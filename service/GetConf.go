@@ -14,6 +14,7 @@ import (
 type Conf struct {
 	WeightMin int
 	HeightMin int
+	DbPath    string
 }
 
 func GetConf() Conf {
