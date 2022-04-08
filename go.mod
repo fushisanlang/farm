@@ -1,8 +1,9 @@
-module tcellLearn
+module farm
 
 go 1.17
 
 require (
+	github.com/BurntSushi/toml v1.1.0
 	github.com/gdamore/tcell/v2 v2.5.0
 	github.com/gogf/gf v1.16.7
 	github.com/mattn/go-runewidth v0.0.13

@@ -8,11 +8,11 @@
 package main
 
 import (
+	"farm/screen"
 	"fmt"
 	"github.com/gdamore/tcell/v2"
 	"github.com/gdamore/tcell/v2/encoding"
 	"os"
-	"tcellLearn/screen"
 )
 
 func init() {

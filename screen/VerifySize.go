@@ -7,12 +7,13 @@
 package screen
 
 import (
+	"farm/service"
 	"fmt"
+	"os"
+	"time"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/gogf/gf/util/gconv"
-	"os"
-	"tcellLearn/service"
-	"time"
 )
 
 func VerifySize(s tcell.Screen) {
