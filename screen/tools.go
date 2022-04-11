@@ -27,8 +27,16 @@ func emitStr(s tcell.Screen, x, y int, style tcell.Style, str string) {
 
 func infoMessage(s tcell.Screen) {
 	_, h := s.Size()
-	emitStr(s, 2, h-3, tcell.StyleDefault, "Press ESC to exit.")
-	emitStr(s, 2, h-2, tcell.StyleDefault, "Press N or -> to next.")
+	emitStr(s, 2, h-4, tcell.StyleDefault, "Press q to quit.")
+	emitStr(s, 2, h-3, tcell.StyleDefault, "Press n to next.")
+	emitStr(s, 2, h-2, tcell.StyleDefault, "Press b to back.")
 	//emitStr(s, 2, h-1, tcell.StyleDefault, "Press  to exit.")
+
+}
+func emitStrCenter(s tcell.Screen, w int, h int, style tcell.Style, printString string, status int) {
+	//status golang中string底层是通过byte数组实现的。中文字符在unicode下占2个字节，在utf-8编码下占3个字节，而golang默认编码正好是utf-8。
+	//居中计算长度是需要*2/3，取半数计算缩紧要/2，结果就是中文需要/3，英语需要/2。
+	a := len(printString)
+	emitStr(s, w/2-a/status, h, style, printString)
 
 }

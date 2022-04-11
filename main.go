@@ -8,47 +8,39 @@
 package main
 
 import (
-	"farm/screen"
-	"fmt"
+	"farm/page"
+	"farm/service"
+	"farm/tools"
 	"github.com/gdamore/tcell/v2"
 	"github.com/gdamore/tcell/v2/encoding"
-	"os"
 )
 
+var version string
+var defStyle tcell.Style
+
 func init() {
+	version = "0.0.1"
+	DbVersion := service.Version
+	if DbVersion != version {
+		service.UpdateDbVersion()
+	}
 
 }
+
 func main() {
-	encoding.Register()
 
-	s, e := tcell.NewScreen()
-
-	if e != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", e)
-		os.Exit(1)
-	}
-	if e := s.Init(); e != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", e)
-		os.Exit(1)
-	}
-
-	defStyle := tcell.StyleDefault.
+	defStyle = tcell.StyleDefault.
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
-	s.SetStyle(defStyle)
-	screen.VerifySize(s)
-	screen.HelloWorld(s)
+	encoding.Register()
+	s, err := tcell.NewScreen()
+	tools.CheckErr(err)
+	err = s.Init()
+	tools.CheckErr(err)
 
-	for {
-		switch ev := s.PollEvent().(type) {
-		case *tcell.EventResize:
-			s.Sync()
-			screen.HelloWorld(s)
-		case *tcell.EventKey:
-			if ev.Key() == tcell.KeyEscape {
-				s.Fini()
-				os.Exit(0)
-			}
-		}
-	}
+	s.SetStyle(defStyle)
+
+	service.VerifySize(s)
+
+	page.StartPage(s)
 }
