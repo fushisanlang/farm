@@ -2,3 +2,6 @@ demos
 .idea
 .idea/*
 demos/*
+logs/*
+main
+farm.db
