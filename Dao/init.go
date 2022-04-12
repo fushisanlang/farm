@@ -6,6 +6,10 @@
 */
 package Dao
 
+import (
+	_ "github.com/mattn/go-sqlite3"
+)
+
 func init() {
-	DbPath = "./farm.db"
+
 }

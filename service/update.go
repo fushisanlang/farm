@@ -6,9 +6,13 @@
 */
 package service
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/gogf/gf/frame/g"
+)
 
 func UpdateDbVersion() {
 	//判断版本，依次执行升级
+	g.Log().Println("升级")
 	fmt.Println("updateDataBase")
 }

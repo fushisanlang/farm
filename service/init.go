@@ -5,9 +5,3 @@
 @Software: GoLand
 */
 package service
-
-var Version string
-
-func init() {
-	Version = GetDbVersion()
-}

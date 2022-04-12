@@ -13,6 +13,7 @@ import (
 	"farm/tools"
 	"github.com/gdamore/tcell/v2"
 	"github.com/gdamore/tcell/v2/encoding"
+	"github.com/gogf/gf/frame/g"
 )
 
 var version string
@@ -20,15 +21,19 @@ var defStyle tcell.Style
 
 func init() {
 	version = "0.0.1"
-	DbVersion := service.Version
+	DbVersion := service.GetVersion()
+	g.Log().Println("校验版本")
+
 	if DbVersion != version {
 		service.UpdateDbVersion()
 	}
-
 }
 
 func main() {
 
+	g.Log().Println("服务启动")
+	g.Log().Println("确认用户")
+	service.GetUserInfo()
 	defStyle = tcell.StyleDefault.
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
@@ -39,8 +44,7 @@ func main() {
 	tools.CheckErr(err)
 
 	s.SetStyle(defStyle)
-
-	service.VerifySize(s)
+	page.VerifySizePage(s)
 
 	page.StartPage(s)
 }

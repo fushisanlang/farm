@@ -8,11 +8,13 @@ package tools
 
 import (
 	"fmt"
+	"github.com/gogf/gf/frame/g"
 	"os"
 )
 
 func CheckErr(err error) {
 	if err != nil {
+		g.Log().Println(err)
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		os.Exit(1)
 	}

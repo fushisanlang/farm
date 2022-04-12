@@ -13,7 +13,7 @@ import (
 )
 
 func StartPage(s tcell.Screen) {
-	screen.Start(s)
+	screen.StartScreen(s)
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:

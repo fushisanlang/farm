@@ -1,0 +1,8 @@
+[database]
+link = "/Users/fushisanlang/src/go/farm/farm.db"
+type = "sqlite"
+[logger]
+path = "/Users/fushisanlang/src/go/farm/logs"
+
+level  = "all"
+stdout = false

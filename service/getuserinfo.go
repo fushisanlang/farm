@@ -6,9 +6,25 @@
 */
 package service
 
-import "farm/Dao"
+import (
+	"farm/Dao"
+	"farm/model"
+	"github.com/gogf/gf/util/gconv"
+)
 
-func GetUserInfo() string {
-	UserInfo := Dao.GetUserInfo()
+func GetUserInfo() model.UserInfo {
+
+	var UserInfo model.UserInfo
+
+	dbUserName := Dao.GetConf("username")
+	dbUserSex := Dao.GetConf("usersex")
+	dbUserAge := Dao.GetConf("userage")
+	if dbUserName != "" && dbUserSex != "" && dbUserAge != "" {
+		UserInfo.UserName = dbUserName
+		UserInfo.UserSex = gconv.Int(dbUserSex)
+		UserInfo.UserAge = gconv.Int(dbUserAge)
+	} else {
+		CreateUser()
+	}
 	return UserInfo
 }
