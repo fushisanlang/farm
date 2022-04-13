@@ -8,12 +8,13 @@ package service
 
 import (
 	"github.com/gdamore/tcell/v2"
+	"github.com/gogf/gf/util/gconv"
 )
 
 func VerifySize(s tcell.Screen) bool {
 	//修改，辅助调整 否则打不开.
-	WeightMin := GetWeightMin()
-	HeightMin := GetHeightMin()
+	WeightMin := gconv.Int(GetConf("WeightMin"))
+	HeightMin := gconv.Int(GetConf("HeightMin"))
 	w, h := s.Size()
 
 	if w < WeightMin || h < HeightMin {

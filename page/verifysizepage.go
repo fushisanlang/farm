@@ -10,12 +10,13 @@ import (
 	"farm/screen"
 	"farm/service"
 	"github.com/gdamore/tcell/v2"
+	"github.com/gogf/gf/util/gconv"
 	"os"
 )
 
 func VerifySizePage(s tcell.Screen) {
 	for service.VerifySize(s) == false {
-		screen.VerifySizeScreen(s, service.GetWeightMin(), service.GetHeightMin())
+		screen.VerifySizeScreen(s, gconv.Int(service.GetConf("WeightMin")), gconv.Int(service.GetConf("HeightMin")))
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventResize:
 			s.Sync()

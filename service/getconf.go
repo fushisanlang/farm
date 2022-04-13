@@ -11,15 +11,7 @@ import (
 	"github.com/gogf/gf/util/gconv"
 )
 
-func GetVersion() string {
-	Version := gconv.String(Dao.GetConf("version"))
-	return Version
-}
-func GetWeightMin() int {
-	WeightMin := gconv.Int(Dao.GetConf("version"))
-	return WeightMin
-}
-func GetHeightMin() int {
-	HeightMin := gconv.Int(Dao.GetConf("version"))
-	return HeightMin
+func GetConf(confKey string) string {
+	ConfValue := gconv.String(Dao.GetConf(confKey))
+	return ConfValue
 }

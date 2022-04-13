@@ -5,3 +5,12 @@
 @Software: GoLand
 */
 package service
+
+import "farm/model"
+
+var UserInfo model.UserInfo
+var Version string
+
+func init() {
+	Version = "0.0.1"
+}

@@ -11,7 +11,7 @@ import (
 	"github.com/gogf/gf/frame/g"
 )
 
-func UpdateDbVersion() {
+func updateDbVersion() {
 	//判断版本，依次执行升级
 	g.Log().Println("升级")
 	fmt.Println("updateDataBase")

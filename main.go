@@ -16,25 +16,14 @@ import (
 	"github.com/gogf/gf/frame/g"
 )
 
-var version string
-var defStyle tcell.Style
-
-func init() {
-	version = "0.0.1"
-	DbVersion := service.GetVersion()
-	g.Log().Println("校验版本")
-
-	if DbVersion != version {
-		service.UpdateDbVersion()
-	}
-}
-
 func main() {
-
 	g.Log().Println("服务启动")
-	g.Log().Println("确认用户")
-	service.GetUserInfo()
-	defStyle = tcell.StyleDefault.
+	g.Log().Println("校验数据库版本")
+
+	service.VerifyVersion()
+
+	g.Log().Println("创建窗口")
+	defStyle := tcell.StyleDefault.
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
 	encoding.Register()
@@ -42,9 +31,16 @@ func main() {
 	tools.CheckErr(err)
 	err = s.Init()
 	tools.CheckErr(err)
-
 	s.SetStyle(defStyle)
-	page.VerifySizePage(s)
 
+	g.Log().Println("校验用户基础数据")
+
+	isUserExist := service.VerifyUserInfo()
+	if isUserExist == false {
+		page.CreatePage(s)
+
+	}
+
+	page.VerifySizePage(s)
 	page.StartPage(s)
 }

@@ -13,7 +13,7 @@ import (
 
 func StartScreen(s tcell.Screen) {
 	w, h := s.Size()
-	version := service.GetVersion()
+	version := service.Version
 	s.Clear()
 	style := tcell.StyleDefault.
 		Background(tcell.ColorBlack).

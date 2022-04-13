@@ -9,5 +9,13 @@ package model
 type UserInfo struct {
 	UserName string
 	UserAge  int
-	UserSex  int
+
+	PetName     string
+	FarmName    string
+	FarmClassId int
+}
+type FarmClass struct {
+	FarmClassId   int
+	FarmClassName string
+	FarmClassInfo string
 }

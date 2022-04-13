@@ -26,7 +26,8 @@ func StartPage(s tcell.Screen) {
 				switch ev.Rune() {
 				case 'n':
 					s.Sync()
-					infoPage(s)
+					CreatePage(s)
+
 				case 'q':
 					s.Fini()
 					os.Exit(0)
