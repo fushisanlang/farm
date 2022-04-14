@@ -14,7 +14,7 @@ import (
 )
 
 func GetFarmClass() gdb.Result {
-
+	g.Log().Println("拉取福地列表")
 	ConfValue, _ := g.DB().GetAll("select * from farmclass")
 	return ConfValue
 

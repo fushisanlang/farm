@@ -19,3 +19,16 @@ type FarmClass struct {
 	FarmClassName string
 	FarmClassInfo string
 }
+type FieldInfo struct {
+	Id            int
+	FieldId       int
+	PlantName     string
+	DuringTime    int
+	IsOpen        int
+	AllDuringTime int
+}
+type FieldInfoAll struct {
+	Id          int
+	IsOpenCount int
+	PlantCount  int
+}

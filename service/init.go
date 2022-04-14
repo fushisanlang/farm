@@ -6,11 +6,19 @@
 */
 package service
 
-import "farm/model"
+import (
+	"farm/model"
+	"github.com/gogf/gf/util/gconv"
+)
 
 var UserInfo model.UserInfo
 var Version string
+var HeightMin, WeightMin int
+var DbVersion string
 
 func init() {
 	Version = "0.0.1"
+	DbVersion = GetConf("version")
+	WeightMin = gconv.Int(GetConf("WeightMin"))
+	HeightMin = gconv.Int(GetConf("HeightMin"))
 }

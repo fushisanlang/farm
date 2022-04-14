@@ -12,7 +12,7 @@ import (
 
 func VerifyVersion() {
 
-	DbVersion := GetConf("version")
+	DbVersion := DbVersion
 	g.Log().Println("校验版本")
 
 	if DbVersion != Version {

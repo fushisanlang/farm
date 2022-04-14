@@ -16,11 +16,14 @@ import (
 	"github.com/gogf/gf/frame/g"
 )
 
-func main() {
+func init() {
 	g.Log().Println("服务启动")
 	g.Log().Println("校验数据库版本")
 
 	service.VerifyVersion()
+}
+
+func main() {
 
 	g.Log().Println("创建窗口")
 	defStyle := tcell.StyleDefault.
@@ -37,10 +40,12 @@ func main() {
 
 	isUserExist := service.VerifyUserInfo()
 	if isUserExist == false {
+		g.Log().Println("用户数据不全，重新创建用户信息")
 		page.CreatePage(s)
 
 	}
-
+	g.Log().Println("校验窗口大小")
 	page.VerifySizePage(s)
+	g.Log().Println("访问起始页")
 	page.StartPage(s)
 }

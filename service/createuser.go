@@ -11,17 +11,13 @@ import (
 	"farm/model"
 	"farm/tools"
 	"fmt"
+	"github.com/gogf/gf/frame/g"
 
 	"github.com/gogf/gf/util/gconv"
 )
 
-//GetPetName
-//	emitStrCenter(s, w, h/2, style, "道号 : "+service.UserInfo.UserName, 3)
-//	emitStrCenter(s, w, h/2+1, style, "道龄 : "+gconv.String(service.UserInfo.UserAge), 3)
-//	emitStrCenter(s, w, h/2+2, style, "道场 : "+service.UserInfo.FarmName, 3)
-//	emitStrCenter(s, w, h/2+3, style, "福地 : "+className, 3)
-//	emitStrCenter(s, w, h/2+4, style, "灵宠 : "+service.UserInfo.PetName, 3)
 func GetPetName() {
+	g.Log().Println("读取灵宠")
 	for true {
 		fmt.Println("输入灵宠，按回车确认")
 
@@ -38,6 +34,7 @@ func GetPetName() {
 }
 
 func GetUserName() {
+	g.Log().Println("读取道号")
 	for true {
 		fmt.Println("输入道号，按回车确认")
 
@@ -54,10 +51,12 @@ func GetUserName() {
 }
 
 func GetUserAge() {
+	g.Log().Println("读取道龄")
 	for true {
 		fmt.Println("输入道龄，按回车确认")
 
 		fmt.Scan(&UserInfo.UserAge)
+
 		if UserInfo.UserAge > 0 {
 			Dao.UpdateUserInfo("userage", gconv.String(UserInfo.UserAge))
 			break
@@ -69,6 +68,7 @@ func GetUserAge() {
 
 }
 func GetFarmName() {
+	g.Log().Println("读取道场")
 	for true {
 		fmt.Println("输入道场，按回车确认")
 
@@ -85,6 +85,7 @@ func GetFarmName() {
 
 }
 func GetFarmClass() []model.FarmClass {
+
 	farmClassList := Dao.GetFarmClass().List()
 	var farmClass model.FarmClass
 	lenList := len(farmClassList)
@@ -98,8 +99,9 @@ func GetFarmClass() []model.FarmClass {
 	return FarmClassList
 
 }
-func GetFarmClassId() {
 
+func GetFarmClassId() {
+	g.Log().Println("读取福地")
 	farmClassList := GetFarmClass()
 	listLen := len(farmClassList)
 

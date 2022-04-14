@@ -7,6 +7,7 @@
 package screen
 
 import (
+	"farm/model"
 	"farm/service"
 	"github.com/gdamore/tcell/v2"
 )
@@ -20,6 +21,7 @@ func StartScreen(s tcell.Screen) {
 		Foreground(tcell.ColorWhite)
 	emitStrCenter(s, w, h/2, style, "药宗模拟器", 3)
 	emitStrCenter(s, w, h/2+1, style, version, 2)
-	infoMessageScreen(s)
+	infoMessageList := []model.ScreenInfoMessage{bPress, nPress, iPress, qPress}
+	infoMessageScreen(s, infoMessageList)
 	s.Show()
 }

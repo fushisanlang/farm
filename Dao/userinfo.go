@@ -13,15 +13,15 @@ import (
 )
 
 func GetUserInfo(infoKey string) string {
-
+	g.Log().Println("拉取用户信息 key：" + infoKey)
 	InfoValue, _ := g.DB().GetOne("select infoValue from `userinfo` where  infoKey = ?", infoKey)
 	return gconv.String(InfoValue["infoValue"])
 
 }
 
 func UpdateUserInfo(infoKey string, infoValue string) {
-	//INSERT INTO "main"."userinfo"("id", "infoKey", "infoValue") VALUES (19, 'usersex', '1');
-	//UPDATE "main"."userinfo" SET "infoKey" = 'farmclassid', "infoValue" = '' WHERE "id" = 20;
+	g.Log().Println("更新用户信息 key：" + infoKey + ", value" + infoValue)
+
 	_, err := g.DB().Exec(`UPDATE "main"."userinfo" SET "infoValue" = ? WHERE "infoKey" = ?;`, infoValue, infoKey)
 	tools.CheckErr(err)
 

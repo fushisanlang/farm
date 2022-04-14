@@ -14,7 +14,7 @@ import (
 )
 
 func GetConf(confKey string) string {
-
+	g.Log().Println("查询配置项" + confKey)
 	ConfValue, _ := g.DB().GetOne("select confValue from `conf` where  confKey = ?", confKey)
 	return gconv.String(ConfValue["confValue"])
 

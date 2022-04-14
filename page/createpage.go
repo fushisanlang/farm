@@ -11,6 +11,7 @@ import (
 	"farm/service"
 	"farm/tools"
 	"github.com/gdamore/tcell/v2"
+	"github.com/gogf/gf/frame/g"
 	"os"
 )
 
@@ -19,24 +20,31 @@ func createPage(s tcell.Screen, id int) {
 	tools.CallClear()
 	switch id {
 	case 1:
+		g.Log().Println("创建用户 道号")
 		service.GetUserName()
 	case 2:
+		g.Log().Println("创建用户 道龄")
 		service.GetUserAge()
 	case 3:
+		g.Log().Println("创建用户 道场")
 		service.GetFarmName()
 	case 4:
+		g.Log().Println("创建用户 福地")
 		service.GetFarmClassId()
 	case 5:
+		g.Log().Println("创建用户 灵宠")
 		service.GetPetName()
 	}
 	s, err := tcell.NewScreen()
 	tools.CheckErr(err)
 
 	s.Init()
+	g.Log().Println("返回创建页面")
 	CreatePage(s)
 }
 
 func CreatePage(s tcell.Screen) {
+	g.Log().Println("创建用户")
 	screen.CreateScreen(s)
 	if service.VerifyUserInfo() == false {
 		for {

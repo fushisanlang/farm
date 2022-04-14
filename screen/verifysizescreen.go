@@ -7,6 +7,7 @@
 package screen
 
 import (
+	"farm/model"
 	"github.com/gdamore/tcell/v2"
 	"github.com/gogf/gf/util/gconv"
 )
@@ -22,6 +23,6 @@ func VerifySizeScreen(s tcell.Screen, WeightMin int, HeightMin int) {
 	emitStrCenter(s, w, h/2-1, style, "目前窗口大小为", 3)
 	emitStrCenter(s, w, h/2-0, style, gconv.String(w)+"*"+gconv.String(h), 2)
 	emitStrCenter(s, w, h/2+1, style, "请调整窗口大小", 3)
-	infoMessageOnVerifyScreen(s)
+	infoMessageScreen(s, []model.ScreenInfoMessage{qPress})
 	s.Show()
 }

@@ -13,6 +13,7 @@ import (
 )
 
 func StartPage(s tcell.Screen) {
+
 	screen.StartScreen(s)
 	for {
 		switch ev := s.PollEvent().(type) {
@@ -26,7 +27,7 @@ func StartPage(s tcell.Screen) {
 				switch ev.Rune() {
 				case 'n':
 					s.Sync()
-					CreatePage(s)
+					FarmSelectPage(s)
 
 				case 'q':
 					s.Fini()

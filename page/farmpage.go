@@ -8,24 +8,26 @@ package page
 
 import (
 	"farm/screen"
-	"farm/service"
 	"github.com/gdamore/tcell/v2"
 	"os"
 )
 
-func VerifySizePage(s tcell.Screen) {
-	for service.VerifySize(s) == false {
-		screen.VerifySizeScreen(s, service.WeightMin, service.HeightMin)
+func FarmPage(s tcell.Screen) {
+
+	screen.FarmScreen(s)
+	for {
 		switch ev := s.PollEvent().(type) {
-		case *tcell.EventResize:
-			s.Sync()
 		case *tcell.EventKey:
+
 			switch ev.Key() {
 			case tcell.KeyEscape:
 				s.Fini()
 				os.Exit(0)
 			case tcell.KeyRune:
 				switch ev.Rune() {
+				case 'n':
+					s.Sync()
+					FarmPage(s)
 
 				case 'q':
 					s.Fini()
@@ -33,7 +35,7 @@ func VerifySizePage(s tcell.Screen) {
 				}
 
 			}
-
 		}
 	}
+
 }
