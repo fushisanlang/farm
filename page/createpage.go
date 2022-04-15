@@ -57,9 +57,7 @@ func CreatePage(s tcell.Screen) {
 					os.Exit(0)
 				case tcell.KeyRune:
 					switch ev.Rune() {
-					case 'n':
-						s.Sync()
-						StartPage(s)
+
 					case '1': //姓名
 						createPage(s, 1)
 					case '2': //年龄

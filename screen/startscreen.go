@@ -21,7 +21,7 @@ func StartScreen(s tcell.Screen) {
 		Foreground(tcell.ColorWhite)
 	emitStrCenter(s, w, h/2, style, "药宗模拟器", 3)
 	emitStrCenter(s, w, h/2+1, style, version, 2)
-	infoMessageList := []model.ScreenInfoMessage{bPress, nPress, iPress, qPress}
+	infoMessageList := []model.ScreenInfoMessage{nPress, qPress}
 	infoMessageScreen(s, infoMessageList)
 	s.Show()
 }

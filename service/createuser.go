@@ -24,6 +24,7 @@ func GetPetName() {
 		fmt.Scan(&UserInfo.PetName)
 		if UserInfo.PetName != "" {
 			Dao.UpdateUserInfo("petname", UserInfo.PetName)
+
 			break
 		} else {
 			tools.CallClear()
@@ -114,7 +115,7 @@ func GetFarmClassId() {
 		var userInput int
 		fmt.Scan(&userInput)
 
-		if userInput > 0 && userInput < listLen {
+		if userInput > 0 && userInput <= listLen {
 			UserInfo.FarmClassId = userInput - 1
 			Dao.UpdateUserInfo("farmclassid", gconv.String(UserInfo.FarmClassId))
 

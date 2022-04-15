@@ -38,8 +38,9 @@ func main() {
 
 	g.Log().Println("校验用户基础数据")
 
-	isUserExist := service.VerifyUserInfo()
+	isUserExist := service.VerifyUserInfoWithErase()
 	if isUserExist == false {
+		service.VerifyUserInfo()
 		g.Log().Println("用户数据不全，重新创建用户信息")
 		page.CreatePage(s)
 

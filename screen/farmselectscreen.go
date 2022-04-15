@@ -25,12 +25,18 @@ func FarmSelectScreen(s tcell.Screen) {
 		j := i % 2
 		k := i / 2
 
-		emitStr(s, 4+(40*j), 3+(6*k), style, "编号 : (F"+gconv.String(fieldList[i].Id)+") "+tools.NumToChinsesT(fieldList[i].Id))
+		emitStr(s, 4+(40*j), 3+(6*k), style, "编  号 : "+tools.NumToChinsesT(fieldList[i].Id)+"  ("+tools.NumToKeyMap(i+1)+") ")
 		emitStr(s, 4+(40*j), 4+(6*k), style, "已开启 : "+gconv.String(fieldList[i].IsOpenCount)+"/10")
 		emitStr(s, 4+(40*j), 5+(6*k), style, "已种植 : "+gconv.String(fieldList[i].PlantCount)+"/10")
 
 	}
-	infoMessageScreen(s, []model.ScreenInfoMessage{qPress})
+	farmSelectScreen(s)
 
 	s.Show()
+}
+
+func farmSelectScreen(s tcell.Screen) {
+	var a model.ScreenInfoMessage
+	a.MessageStr = "Ctrl + _ : 编号快捷键选择种植园"
+	infoMessageScreen(s, []model.ScreenInfoMessage{a, qPress})
 }

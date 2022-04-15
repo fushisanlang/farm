@@ -15,13 +15,14 @@ import (
 var bPress, iPress, nPress, qPress model.ScreenInfoMessage
 
 func init() {
-	bPress.MessageStr = "按 b 打开背包"
+	bPress.MessageStr = "       b : 返回前一页"
+
 	bPress.MessageStatus = 3
-	iPress.MessageStr = "按 i 打开信息页"
+	iPress.MessageStr = "       i : 打开信息页"
 	iPress.MessageStatus = 3
-	nPress.MessageStr = "按 n 进入主页面"
+	nPress.MessageStr = "       n : 返回农场总览"
 	nPress.MessageStatus = 3
-	qPress.MessageStr = "按 q 退出程序"
+	qPress.MessageStr = "       q : 退出程序"
 	qPress.MessageStatus = 3
 
 }
@@ -110,6 +111,6 @@ func infoMessageScreen(s tcell.Screen, messageList []model.ScreenInfoMessage) {
 	lenMessageList := len(messageList)
 	for i := 0; i < lenMessageList; i++ {
 
-		emitStr(s, 2, h-(lenMessageList-i)+1, tcell.StyleDefault, messageList[i].MessageStr)
+		emitStr(s, 2, h-(lenMessageList-i)-1, tcell.StyleDefault, messageList[i].MessageStr)
 	}
 }

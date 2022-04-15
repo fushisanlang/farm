@@ -20,12 +20,12 @@ type FarmClass struct {
 	FarmClassInfo string
 }
 type FieldInfo struct {
-	Id            int
-	FieldId       int
-	PlantName     string
-	DuringTime    int
-	IsOpen        int
-	AllDuringTime int
+	Id         int
+	FieldId    int
+	PlantName  string
+	DuringTime int
+	IsOpen     int
+	NeedTime   int
 }
 type FieldInfoAll struct {
 	Id          int
