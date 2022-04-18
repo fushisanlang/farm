@@ -12,8 +12,8 @@ import (
 	"os"
 )
 
-func FarmSelectPage(s tcell.Screen) {
-	screen.FarmSelectScreen(s)
+func farmSelectPage(s tcell.Screen, page int) {
+	page = screen.FarmSelectScreen(s, page)
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:
@@ -22,45 +22,30 @@ func FarmSelectPage(s tcell.Screen) {
 			case tcell.KeyEscape:
 				s.Fini()
 				os.Exit(0)
-			case tcell.KeyCtrlQ:
-				s.Sync()
-				FarmPage(s, 1)
-			case tcell.KeyCtrlW:
-				s.Sync()
-				FarmPage(s, 2)
-			case tcell.KeyCtrlE:
-				s.Sync()
-				FarmPage(s, 3)
-			case tcell.KeyCtrlR:
-				s.Sync()
-				FarmPage(s, 4)
-			case tcell.KeyCtrlA:
-				s.Sync()
-				FarmPage(s, 5)
-			case tcell.KeyCtrlS:
-				s.Sync()
-				FarmPage(s, 6)
-			case tcell.KeyCtrlD:
-				s.Sync()
-				FarmPage(s, 7)
-			case tcell.KeyCtrlF:
-				s.Sync()
-				FarmPage(s, 8)
-			case tcell.KeyCtrlZ:
-				s.Sync()
-				FarmPage(s, 9)
-			case tcell.KeyCtrlX:
-				s.Sync()
-				FarmPage(s, 10)
-			//case tcell.KeyCtrlC:
-			//	s.Sync()
-			//	FarmPage(s,11)
-			//case tcell.KeyCtrlV:
-			//	s.Sync()
 			//	FarmPage(s,12)
-
+			case tcell.KeyRight:
+				s.Sync()
+				farmSelectPage(s, page+1)
+			case tcell.KeyLeft:
+				s.Sync()
+				farmSelectPage(s, page-1)
 			case tcell.KeyRune:
 				switch ev.Rune() {
+				case '1':
+					s.Sync()
+					FarmPage(s, 1, 1+(page-1)*5)
+				case '2':
+					s.Sync()
+					FarmPage(s, 1, 2+(page-1)*5)
+				case '3':
+					s.Sync()
+					FarmPage(s, 1, 3+(page-1)*5)
+				case '4':
+					s.Sync()
+					FarmPage(s, 1, 4+(page-1)*5)
+				case '5':
+					s.Sync()
+					FarmPage(s, 1, 5+(page-1)*5)
 
 				case 'q':
 					s.Fini()

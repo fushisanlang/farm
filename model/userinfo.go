@@ -31,4 +31,6 @@ type FieldInfoAll struct {
 	Id          int
 	IsOpenCount int
 	PlantCount  int
+	//IsRipeCount   int
+	//WillRipeCount int
 }

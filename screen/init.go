@@ -12,17 +12,21 @@ import (
 	"github.com/mattn/go-runewidth"
 )
 
-var bPress, iPress, nPress, qPress model.ScreenInfoMessage
+var bPress, iPress, nPress, qPress, uPress model.ScreenInfoMessage
 
 func init() {
 	bPress.MessageStr = "       b : 返回前一页"
 
 	bPress.MessageStatus = 3
-	iPress.MessageStr = "       i : 打开信息页"
+	iPress.MessageStr = "       i : 开启"
 	iPress.MessageStatus = 3
+	uPress.MessageStr = "       u : 种植"
+	uPress.MessageStatus = 3
+
 	nPress.MessageStr = "       n : 返回农场总览"
 	nPress.MessageStatus = 3
 	qPress.MessageStr = "       q : 退出程序"
+
 	qPress.MessageStatus = 3
 
 }
@@ -51,15 +55,8 @@ func printAllBox(s tcell.Screen) {
 	printBox(s, 3, 2)
 	printBox(s, 3, 10)
 	printBox(s, 3, 18)
-	printBox(s, 33, 2)
-	printBox(s, 33, 10)
-	printBox(s, 33, 18)
-	printBox(s, 63, 2)
-	printBox(s, 63, 10)
-	printBox(s, 63, 18)
-	printBox(s, 93, 2)
-	printBox(s, 93, 10)
-	printBox(s, 93, 18)
+	printBox(s, 3, 26)
+
 }
 func printAllBox2(s tcell.Screen) {
 	printBox2(s, 3, 2)
@@ -67,11 +64,7 @@ func printAllBox2(s tcell.Screen) {
 	printBox2(s, 3, 14)
 	printBox2(s, 3, 20)
 	printBox2(s, 3, 26)
-	printBox2(s, 43, 2)
-	printBox2(s, 43, 8)
-	printBox2(s, 43, 14)
-	printBox2(s, 43, 20)
-	printBox2(s, 43, 26)
+
 }
 
 func printBox2(s tcell.Screen, x int, y int) {
@@ -112,5 +105,13 @@ func infoMessageScreen(s tcell.Screen, messageList []model.ScreenInfoMessage) {
 	for i := 0; i < lenMessageList; i++ {
 
 		emitStr(s, 2, h-(lenMessageList-i)-1, tcell.StyleDefault, messageList[i].MessageStr)
+	}
+}
+func infoMessageScreenColumn2(s tcell.Screen, messageList []model.ScreenInfoMessage) {
+	_, h := s.Size()
+	lenMessageList := len(messageList)
+	for i := 0; i < lenMessageList; i++ {
+
+		emitStr(s, 22, h-(lenMessageList-i)-1, tcell.StyleDefault, messageList[i].MessageStr)
 	}
 }

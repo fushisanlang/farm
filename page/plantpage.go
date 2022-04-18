@@ -12,9 +12,9 @@ import (
 	"os"
 )
 
-func StartPage(s tcell.Screen) {
+func plantPage(s tcell.Screen, screenId int, fieldId int, page int) {
 
-	screen.StartScreen(s)
+	screen.PlantScreen(s, screenId, fieldId)
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:
@@ -23,12 +23,15 @@ func StartPage(s tcell.Screen) {
 			case tcell.KeyEscape:
 				s.Fini()
 				os.Exit(0)
+
 			case tcell.KeyRune:
 				switch ev.Rune() {
 				case 'n':
 					s.Sync()
 					farmSelectPage(s, 1)
-
+				case 'b':
+					s.Sync()
+					FieldPage(s, screenId, fieldId, page)
 				case 'q':
 					s.Fini()
 					os.Exit(0)

@@ -10,29 +10,26 @@ func NumToKeyMap(num int) string {
 	var KeyMap string
 	switch num {
 	case 1:
-		KeyMap = "Ctrl + q"
+		KeyMap = "1"
 	case 2:
-		KeyMap = "Ctrl + w"
+		KeyMap = "2"
 	case 3:
-		KeyMap = "Ctrl + e"
+		KeyMap = "3"
 	case 4:
-		KeyMap = "Ctrl + r"
+		KeyMap = "4"
 	case 5:
-		KeyMap = "Ctrl + a"
+		KeyMap = "5"
 	case 6:
-		KeyMap = "Ctrl + s"
+		KeyMap = "6"
 	case 7:
-		KeyMap = "Ctrl + d"
+		KeyMap = "7"
 	case 8:
-		KeyMap = "Ctrl + f"
+		KeyMap = "8"
 	case 9:
-		KeyMap = "Ctrl + z"
+		KeyMap = "9"
 	case 10:
-		KeyMap = "Ctrl + x"
-	case 11:
-		KeyMap = "Ctrl + c"
-	case 12:
-		KeyMap = "Ctrl + v"
+		KeyMap = "0"
+
 	}
 
 	return KeyMap

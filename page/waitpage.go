@@ -28,7 +28,7 @@ func WaitPage(s tcell.Screen, waitString string) {
 				switch ev.Rune() {
 				case 'n':
 					s.Sync()
-					FarmSelectPage(s)
+					farmSelectPage(s, 1)
 				case 'i':
 					s.Sync()
 					WaitPage(s, "i")

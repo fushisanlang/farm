@@ -51,8 +51,13 @@ func GetFieldInfoAll() []model.FieldInfoAll {
 		fieldInfo.Id = gconv.Int(fieldInfoAllList[i]["id"])
 		fieldInfo.IsOpenCount = gconv.Int(fieldInfoAllList[i]["isopencount"])
 		fieldInfo.PlantCount = gconv.Int(fieldInfoAllList[i]["plantcount"])
+		//fieldInfo.IsRipeCount = gconv.Int(fieldInfoAllList[i]["isripecount"])
+		//fieldInfo.WillRipeCount = gconv.Int(fieldInfoAllList[i]["willripecount"])
 
 		FieldInfoAllList[i] = fieldInfo
 	}
 	return FieldInfoAllList
+}
+func OpenField(id int, fieldId int) (bool, int) {
+	return Dao.OpenField(id, fieldId)
 }

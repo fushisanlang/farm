@@ -12,9 +12,9 @@ import (
 	"os"
 )
 
-func FieldPage(s tcell.Screen, screenId int, fieldId int) {
+func FieldPage(s tcell.Screen, screenId int, fieldId int, page int) {
 
-	screen.FieldScreen(s, screenId, fieldId)
+	fieldInfo := screen.FieldScreen(s, screenId, fieldId)
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:
@@ -28,13 +28,27 @@ func FieldPage(s tcell.Screen, screenId int, fieldId int) {
 				switch ev.Rune() {
 				case 'n':
 					s.Sync()
-					FarmSelectPage(s)
-				case 'i':
+					farmSelectPage(s, 1)
+
+				case 'i': //开启
 					s.Sync()
-					WaitPage(s, "i")
+					if fieldInfo.IsOpen == 0 {
+						openPage(s, screenId, fieldId, page)
+					}
+				case 'u': //种植
+					s.Sync()
+					if fieldInfo.PlantName == "" {
+						plantPage(s, screenId, fieldId, page)
+					}
+				case 'o':
+					s.Sync()
+					WaitPage(s, "o")
+				case 'p':
+					s.Sync()
+					WaitPage(s, "p")
 				case 'b':
 					s.Sync()
-					FarmPage(s, screenId)
+					FarmPage(s, page, screenId)
 				case 'q':
 					s.Fini()
 					os.Exit(0)
