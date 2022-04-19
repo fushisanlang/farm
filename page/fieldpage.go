@@ -45,9 +45,15 @@ func FieldPage(s tcell.Screen, screenId int, fieldId int, page int) {
 					if fieldInfo.IsOpen == 1 && fieldInfo.PlantName != "" {
 						verifyEradicatePage(s, screenId, fieldId, page)
 					}
-				case 'p':
+				case 'j': // 收获
 					s.Sync()
-					WaitPage(s, "p")
+					WaitPage(s, "收获")
+				case 'k': // 施肥
+					s.Sync()
+					WaitPage(s, "施肥")
+				//case 'p':
+				//	s.Sync()
+				//	WaitPage(s, "p")
 				case 'b':
 					s.Sync()
 					FarmPage(s, page, screenId)

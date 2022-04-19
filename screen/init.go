@@ -13,16 +13,19 @@ import (
 	"github.com/mattn/go-runewidth"
 )
 
-var bPress, iPress, nPress, qPress, oPress, leftPress, rightPress, uPress model.ScreenInfoMessage
+var bPress, iPress, nPress, qPress, oPress, leftPress, rightPress, uPress, jPress, kPress model.ScreenInfoMessage
 
 func init() {
 	bPress.MessageStr = "       b : 返回前一页"
-
 	bPress.MessageStatus = 3
 	iPress.MessageStr = "       i : 开启"
 	iPress.MessageStatus = 3
 	uPress.MessageStr = "       u : 种植"
 	uPress.MessageStatus = 3
+	jPress.MessageStr = "       j : 收获"
+	jPress.MessageStatus = 3
+	kPress.MessageStr = "       k : 施肥"
+	kPress.MessageStatus = 3
 	oPress.MessageStr = "       o : 铲除"
 	oPress.MessageStatus = 3
 	nPress.MessageStr = "       n : 返回农场总览"
