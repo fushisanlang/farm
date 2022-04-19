@@ -37,7 +37,7 @@ func GetFieldInfoAll() gdb.Result {
 	sql := `SELECT
 	f.id,
 	count( CASE WHEN f.isopen = 1 THEN f.id ELSE NULL END ) isopencount,
-	count( CASE WHEN f.isopen = 1 AND f.plantid != 0 THEN f.id ELSE NULL END ) / 2 plantcount 
+	count( CASE WHEN f.isopen = 1 AND f.plantid != 0 THEN f.id ELSE NULL END )  plantcount 
 FROM
 	field f 
 GROUP BY

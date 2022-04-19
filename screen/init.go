@@ -8,6 +8,7 @@ package screen
 
 import (
 	"farm/model"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/mattn/go-runewidth"
 )
@@ -114,4 +115,34 @@ func infoMessageScreenColumn2(s tcell.Screen, messageList []model.ScreenInfoMess
 
 		emitStr(s, 22, h-(lenMessageList-i)-1, tcell.StyleDefault, messageList[i].MessageStr)
 	}
+}
+
+// 7 , 5, 5
+
+func GetPageAndCount(listLen int, pageCount int, page int) (int, int) {
+	//长度不够分页，
+	if listLen < pageCount {
+		pageCount = listLen
+	}
+	//分页*页数（总显示数） 大于总数   // 3 * 3 > 7  // 4*4 > 7
+	if page*pageCount > listLen {
+		// 总数 % 分页的余数>0，说明还有需要展示的数据
+		if listLen%pageCount > 0 { // 7 % 3 = 1 > 0
+			//分页*页数（总显示数 < 总数+分页  满足条件说明页数是准确的
+			if page*pageCount < listLen+pageCount { //4*3 < 7 + 3
+				pageCount = listLen % pageCount
+			} else {
+				//总显示数大于总数+分页 说明页数超了，返回的时候需要页数减1
+				pageCount = listLen % pageCount
+				page = page - 1
+			}
+			// 余数=0 没有需要展示的数据
+		} else {
+			page = page - 1
+		}
+	}
+	if page < 1 {
+		page = 1
+	}
+	return pageCount, page
 }

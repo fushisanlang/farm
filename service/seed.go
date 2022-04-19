@@ -19,6 +19,7 @@ func GetSeedList() []model.SeedList {
 	SeedAllList := make([]model.SeedList, lenList, lenList)
 	for i := 0; i < lenList; i++ {
 		seedInfo.Id = gconv.Int(seedAllList[i]["id"])
+		seedInfo.BagId = gconv.Int(seedAllList[i]["bagid"])
 		seedInfo.PlantName = gconv.String(seedAllList[i]["plantname"])
 		seedInfo.TimeNeed = gconv.Int(seedAllList[i]["timeneed"])
 		seedInfo.CountNum = gconv.Int(seedAllList[i]["countnum"])
@@ -27,4 +28,8 @@ func GetSeedList() []model.SeedList {
 		SeedAllList[i] = seedInfo
 	}
 	return SeedAllList
+}
+
+func PlantSeed(screenId int, fieldId int, Id int, bagId int) {
+	Dao.PlantSeed(screenId, fieldId, Id, bagId)
 }

@@ -10,6 +10,7 @@ import (
 	"farm/model"
 	"farm/service"
 	"farm/tools"
+
 	"github.com/gdamore/tcell/v2"
 	"github.com/gogf/gf/util/gconv"
 )
@@ -17,23 +18,24 @@ import (
 func FarmSelectScreen(s tcell.Screen, page int) int {
 	var pageCount int
 	pageCount = 5
+	basePageCount := pageCount
 	s.Clear()
 	printAllBox2(s)
 	style := tcell.StyleDefault.
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
 	fieldList := service.GetFieldInfoAll()
-	if page*pageCount > len(fieldList) {
-		page = len(fieldList) / pageCount
-	}
-	if page < 1 {
-		page = 1
-	}
+
+	listLen := len(fieldList)
+	pageCount, page = GetPageAndCount(listLen, pageCount, page)
 
 	for i := 0; i < pageCount; i++ {
-		emitStr(s, 4, 3+(6*i), style, "编  号 : "+tools.NumToChinsesT(i+(page-1)*pageCount+1)+"  ("+tools.NumToKeyMap(i+1)+") ")
-		emitStr(s, 4, 4+(6*i), style, "已开启 : "+gconv.String(fieldList[i+(page-1)*pageCount].IsOpenCount)+"/10")
-		emitStr(s, 4, 5+(6*i), style, "已种植 : "+gconv.String(fieldList[i+(page-1)*pageCount].PlantCount)+"/10")
+		emitStr(s, 4, 3+(6*i), style, "编  号 : "+tools.NumToChinsesT(i+(page-1)*basePageCount+1)+
+			"  ("+tools.NumToKeyMap(i+1)+") ")
+		emitStr(s, 4, 4+(6*i), style, "已开启 : "+
+			gconv.String(fieldList[i+(page-1)*basePageCount].IsOpenCount)+"/10")
+		emitStr(s, 4, 5+(6*i), style, "已种植 : "+
+			gconv.String(fieldList[i+(page-1)*basePageCount].PlantCount)+"/10")
 	}
 	farmSelectScreen(s)
 	infoMessageScreenColumn2(s, []model.ScreenInfoMessage{qPress})

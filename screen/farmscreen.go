@@ -24,20 +24,15 @@ func FarmScreen(s tcell.Screen, page int, id int) (int, int) {
 		Foreground(tcell.ColorWhite)
 	fieldList := service.GetFieldInfo(id)
 
-	if page*pageCount > len(fieldList) {
-		page = len(fieldList) / pageCount
-	}
-	if page < 1 {
-		page = 1
-	}
-	//	printBox(s, 3, 2) 4,3
-	//	printBox(s, 3, 10)4 11
-	//	printBox(s, 3, 18)4 19
-	//	printBox(s, 3, 26) 4 27
+	listLen := len(fieldList)
+	pageCount, page = GetPageAndCount(listLen, pageCount, page)
+
 	for i := 0; i < pageCount; i++ {
 
-		emitStr(s, 4, 3+(8*i), style, "编  号 : "+tools.NumToChinsesT(id)+tools.NumToChinsesD(i+(page-1)*pageCount+1)+"("+tools.NumToKeyMap(i+1)+")")
-		if fieldList[i].IsOpen == 1 {
+		emitStr(s, 4, 3+(8*i), style, "编  号 : "+tools.NumToChinsesT(id)+
+			tools.NumToChinsesD(i+(page-1)*pageCount+1)+"("+tools.NumToKeyMap(i+1)+")")
+		// 0 + ( 3 -1) *
+		if fieldList[i+(page-1)*pageCount].IsOpen == 1 {
 			if fieldList[i].PlantName != "" {
 				emitStr(s, 4, 4+(8*i), style, "灵植名称 : "+fieldList[i].PlantName)
 				emitStr(s, 4, 5+(8*i), style, "目前状态 : "+gconv.String(fieldList[i].DuringTime))

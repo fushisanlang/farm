@@ -38,7 +38,7 @@ func FieldPage(s tcell.Screen, screenId int, fieldId int, page int) {
 				case 'u': //种植
 					s.Sync()
 					if fieldInfo.PlantName == "" {
-						plantPage(s, screenId, fieldId, page)
+						selectSeedPage(s, screenId, fieldId, page)
 					}
 				case 'o':
 					s.Sync()

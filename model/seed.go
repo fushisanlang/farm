@@ -8,6 +8,7 @@ package model
 
 type SeedList struct {
 	Id        int
+	BagId     int
 	PlantName string
 	TimeNeed  int
 	CountNum  int
