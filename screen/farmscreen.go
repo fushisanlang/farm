@@ -55,6 +55,7 @@ func FarmScreen(s tcell.Screen, page int, id int) (int, int) {
 func farmScreen(s tcell.Screen) {
 
 	var a model.ScreenInfoMessage
-	a.MessageStr = "Ctrl + _ : 编号快捷键查看详细"
-	infoMessageScreen(s, []model.ScreenInfoMessage{a, nPress, qPress})
+	a.MessageStr = "    数字 : 查看详细"
+	infoMessageScreen(s, []model.ScreenInfoMessage{a, leftPress, rightPress})
+	infoMessageScreenColumn2(s, []model.ScreenInfoMessage{nPress, qPress})
 }

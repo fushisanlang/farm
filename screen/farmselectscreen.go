@@ -47,5 +47,5 @@ func FarmSelectScreen(s tcell.Screen, page int) int {
 func farmSelectScreen(s tcell.Screen) {
 	var a model.ScreenInfoMessage
 	a.MessageStr = "    数字 : 选择种植园"
-	infoMessageScreen(s, []model.ScreenInfoMessage{a})
+	infoMessageScreen(s, []model.ScreenInfoMessage{a, leftPress, rightPress})
 }

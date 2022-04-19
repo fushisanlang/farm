@@ -26,12 +26,12 @@ func FieldScreen(s tcell.Screen, id int, fieldId int) model.FieldInfo {
 		infoMessageScreen(s, []model.ScreenInfoMessage{iPress})
 	} else if fieldInfo.PlantName == "" {
 		emitStr(s, 3, 6, style, "园地状态 : 未种植")
-		infoMessageScreen(s, []model.ScreenInfoMessage{uPress})
+		infoMessageScreen(s, []model.ScreenInfoMessage{uPress, oPress})
 	} else {
 		emitStr(s, 3, 6, style, "灵植名称 : "+fieldInfo.PlantName)
 		emitStr(s, 3, 7, style, "灵植状态 : "+tools.GetPlantTime(fieldInfo.DuringTime, fieldInfo.NeedTime))
 	}
-
+	infoMessageScreen(s, []model.ScreenInfoMessage{uPress, iPress, oPress})
 	infoMessageScreenColumn2(s, []model.ScreenInfoMessage{bPress, nPress, qPress})
 	s.Show()
 	return fieldInfo

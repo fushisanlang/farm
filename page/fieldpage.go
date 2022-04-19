@@ -40,9 +40,11 @@ func FieldPage(s tcell.Screen, screenId int, fieldId int, page int) {
 					if fieldInfo.PlantName == "" {
 						selectSeedPage(s, screenId, fieldId, page)
 					}
-				case 'o':
+				case 'o': //铲除
 					s.Sync()
-					WaitPage(s, "o")
+					if fieldInfo.IsOpen == 1 && fieldInfo.PlantName != "" {
+						verifyEradicatePage(s, screenId, fieldId, page)
+					}
 				case 'p':
 					s.Sync()
 					WaitPage(s, "p")

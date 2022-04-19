@@ -44,5 +44,5 @@ func SelectSeedScreen(s tcell.Screen, page int, seedList []model.SeedList) (int,
 func selectSeedScreen(s tcell.Screen) {
 	var a model.ScreenInfoMessage
 	a.MessageStr = "    数字 : 选择种子"
-	infoMessageScreen(s, []model.ScreenInfoMessage{a})
+	infoMessageScreen(s, []model.ScreenInfoMessage{a, leftPress, rightPress})
 }
