@@ -1,0 +1,44 @@
+/*
+@Time : 2022/4/20 9:43 上午
+@Author : fushisanlang
+@File : harvestpage
+@Software: GoLand
+*/
+package page
+
+import (
+	"farm/screen"
+	"github.com/gdamore/tcell/v2"
+	"os"
+)
+
+func harvestPage(s tcell.Screen, screenId int, fieldId int, page int) {
+
+	screen.HarvestScreen(s, screenId, fieldId)
+	for {
+		switch ev := s.PollEvent().(type) {
+		case *tcell.EventKey:
+
+			switch ev.Key() {
+			case tcell.KeyEscape:
+				s.Fini()
+				os.Exit(0)
+
+			case tcell.KeyRune:
+				switch ev.Rune() {
+				case 'n':
+					s.Sync()
+					farmSelectPage(s, 1)
+				case 'b':
+					s.Sync()
+					FieldPage(s, screenId, fieldId, page)
+				case 'q':
+					s.Fini()
+					os.Exit(0)
+				}
+
+			}
+		}
+	}
+
+}

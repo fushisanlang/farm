@@ -15,7 +15,23 @@ import (
 
 func GetConf(confKey string) string {
 	g.Log().Println("查询配置项" + confKey)
-	ConfValue, _ := g.DB().GetOne("select confValue from `conf` where  confKey = ?", confKey)
+	//20220420
+	//ConfValue, _ := g.DB().GetOne("select confValue from `conf` where  confKey = ?", confKey)
+	var sql string
+	switch confKey {
+	case "version":
+		sql = "select version confValue from `confnew` where  id = 1"
+	case "WeightMin":
+		sql = "select WeightMin confValue from `confnew` where  id = 1"
+
+	case "HeightMin":
+		sql = "select HeightMin confValue from `confnew` where  id = 1"
+
+	}
+	ConfValue, _ := g.DB().GetOne(sql)
+
+	g.Log().Println("获得配置项" + confKey + gconv.String(ConfValue["confValue"]))
+
 	return gconv.String(ConfValue["confValue"])
 
 }

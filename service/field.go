@@ -19,7 +19,7 @@ func GetOneFieldInfo(id int, fieldId int) model.FieldInfo {
 	OneFieldInfo.FieldId = fieldId
 	OneFieldInfo.IsOpen = gconv.Int(oneFieldInfo["isopen"])
 	OneFieldInfo.PlantName = gconv.String(oneFieldInfo["plantime"])
-	OneFieldInfo.DuringTime = gconv.Int(oneFieldInfo["druingtime"])
+	OneFieldInfo.DuringTime = gconv.Int(oneFieldInfo["duringtime"])
 	OneFieldInfo.NeedTime = gconv.Int(oneFieldInfo["timeneed"])
 
 	return OneFieldInfo
@@ -36,7 +36,7 @@ func GetFieldInfo(id int) []model.FieldInfo {
 		fieldInfo.FieldId = gconv.Int(fieldInfoList[i]["fieldid"])
 		fieldInfo.PlantName = gconv.String(fieldInfoList[i]["name"])
 		fieldInfo.DuringTime = gconv.Int(fieldInfoList[i]["duringtime"])
-		fieldInfo.NeedTime = gconv.Int(fieldInfoList[i]["allduringtime"])
+		fieldInfo.NeedTime = gconv.Int(fieldInfoList[i]["timeneed"])
 		fieldInfo.IsOpen = gconv.Int(fieldInfoList[i]["isopen"])
 		FieldInfoList[i] = fieldInfo
 	}

@@ -50,12 +50,17 @@ GROUP BY
 
 }
 func OpenField(id int, fieldId int) (bool, int) {
-	sql := `select (select infoValue from userinfo where infoKey='money')-(select infoValue from userinfo where infoKey='nextfieldneedmoney') isMoneyEnough`
+	//20220420
+	//sql := `select (select infoValue from userinfo where infoKey='money')-(select infoValue from userinfo where infoKey='nextfieldneedmoney') isMoneyEnough`
+	sql := `select money - nextfieldneed isMoneyEnough from userinfonew;`
+
 	isMoneyEnough, _ := g.DB().GetOne(sql)
 	IsMoneyEnough := gconv.Int(isMoneyEnough["isMoneyEnough"])
 
 	if IsMoneyEnough >= 0 {
-		sql2 := `UPDATE "main"."field" SET  "isopen" = 1 WHERE "id" = ? AND "fieldid" = ? ;UPDATE "main"."userinfo" SET "infoValue" = infoValue-(select infoValue from userinfo where infoKey='nextfieldneedmoney') WHERE "infoKey" = 'money';UPDATE "main"."userinfo" SET "infoValue" =  "infoValue" * 2  WHERE "infoKey" = 'nextfieldneedmoney';`
+		//20220420
+		//sql2 := `UPDATE "main"."field" SET  "isopen" = 1 WHERE "id" = ? AND "fieldid" = ? ;UPDATE "main"."userinfo" SET "infoValue" = infoValue-(select infoValue from userinfo where infoKey='nextfieldneedmoney') WHERE "infoKey" = 'money';UPDATE "main"."userinfo" SET "infoValue" =  "infoValue" * 2  WHERE "infoKey" = 'nextfieldneedmoney';`
+		sql2 := `UPDATE "main"."field" SET  "isopen" = 1 WHERE "id" = ? AND "fieldid" = ? ;update userinfonew set money = money - nextfieldneed ,nextfieldneed =nextfieldneed * 2 where id = 1`
 		_, err := g.DB().Exec(sql2, id, fieldId)
 		tools.CheckErr(err)
 		return true, IsMoneyEnough

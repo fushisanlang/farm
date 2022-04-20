@@ -32,7 +32,7 @@ func FieldScreen(s tcell.Screen, id int, fieldId int) model.FieldInfo {
 		emitStr(s, 3, 6, style, "灵植名称 : "+fieldInfo.PlantName)
 		emitStr(s, 3, 7, style, "灵植状态 : "+tools.GetPlantTime(fieldInfo.DuringTime, fieldInfo.NeedTime))
 		if fieldInfo.DuringTime >= fieldInfo.NeedTime {
-			infoMessageScreen(s, []model.ScreenInfoMessage{jPress, kPress, oPress})
+			infoMessageScreen(s, []model.ScreenInfoMessage{jPress, oPress})
 
 		} else {
 			infoMessageScreen(s, []model.ScreenInfoMessage{kPress, oPress})

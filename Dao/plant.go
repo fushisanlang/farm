@@ -13,7 +13,7 @@ import (
 
 func DuringTimeAutoAdd() {
 	sql := `UPDATE field 
-SET duringtime = duringtime + 1 
+SET duringtime = min(duringtime + 1,timeneed)
 WHERE
 	keyid IN ( SELECT keyid FROM field f, plant p WHERE f.isopen = 1 AND f.plantid = p.id AND f.duringtime < p.timeneed )`
 

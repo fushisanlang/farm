@@ -14,7 +14,26 @@ import (
 
 func GetUserInfo(infoKey string) string {
 	g.Log().Println("拉取用户信息 key：" + infoKey)
-	InfoValue, _ := g.DB().GetOne("select infoValue from `userinfo` where  infoKey = ?", infoKey)
+	var sql string
+
+	switch infoKey {
+	case "username":
+		sql = `select username infoValue from userinfonew where  id = 1;`
+	case "petname":
+		sql = `select petname infoValue from userinfonew where  id = 1;`
+	case "farmname":
+		sql = `select farmname infoValue from userinfonew where  id = 1;`
+
+	case "farmclassid":
+		sql = `select farmclassid infoValue from userinfonew where  id = 1;`
+
+	case "userage":
+		sql = `select userage infoValue from userinfonew where  id = 1;`
+
+	}
+
+	InfoValue, _ := g.DB().GetOne(sql)
+
 	return gconv.String(InfoValue["infoValue"])
 
 }
@@ -22,7 +41,24 @@ func GetUserInfo(infoKey string) string {
 func UpdateUserInfo(infoKey string, infoValue string) {
 	g.Log().Println("更新用户信息 key：" + infoKey + ", value" + infoValue)
 
-	_, err := g.DB().Exec(`UPDATE "main"."userinfo" SET "infoValue" = ? WHERE "infoKey" = ?;`, infoValue, infoKey)
+	var sql string
+	switch infoKey {
+	case "username":
+		sql = `UPDATE "main"."userinfonew" SET username= ? WHERE "id" = 1;`
+	case "petname":
+		sql = `UPDATE "main"."userinfonew" SET petname= ? WHERE "id" = 1;`
+	case "farmname":
+		sql = `UPDATE "main"."userinfonew" SET farmname= ? WHERE "id" = 1;`
+
+	case "farmclassid":
+		sql = `UPDATE "main"."userinfonew" SET farmclassid= ? WHERE "id" = 1;`
+
+	case "userage":
+		sql = `UPDATE "main"."userinfonew" SET userage= ? WHERE "id" = 1;`
+
+	}
+
+	_, err := g.DB().Exec(sql, infoValue)
 	tools.CheckErr(err)
 
 }

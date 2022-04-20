@@ -92,9 +92,12 @@ func GetFarmClass() []model.FarmClass {
 	lenList := len(farmClassList)
 	FarmClassList := make([]model.FarmClass, lenList, lenList)
 	for i := 0; i < lenList; i++ {
-		farmClass.FarmClassId = gconv.Int(farmClassList[i]["farmclassid"])
-		farmClass.FarmClassName = gconv.String(farmClassList[i]["farmclassname"])
-		farmClass.FarmClassInfo = gconv.String(farmClassList[i]["farmclassinfo"])
+		farmClass = model.FarmClass{
+			FarmClassId:   gconv.Int(farmClassList[i]["farmclassid"]),
+			FarmClassName: gconv.String(farmClassList[i]["farmclassname"]),
+			FarmClassInfo: gconv.String(farmClassList[i]["farmclassinfo"]),
+		}
+
 		FarmClassList[i] = farmClass
 	}
 	return FarmClassList

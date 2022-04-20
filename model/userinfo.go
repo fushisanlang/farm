@@ -34,3 +34,8 @@ type FieldInfoAll struct {
 	//IsRipeCount   int
 	//WillRipeCount int
 }
+type NewEx struct {
+	NewEx int
+	Ex    int
+	Level int
+}

@@ -10,7 +10,7 @@
  Target Server Version : 3030001
  File Encoding         : 65001
 
- Date: 19/04/2022 17:28:29
+ Date: 20/04/2022 16:18:15
 */
 
 PRAGMA foreign_keys = false;
@@ -32,8 +32,8 @@ CREATE TABLE "bag" (
 -- Records of bag
 -- ----------------------------
 BEGIN;
-INSERT INTO "bag" VALUES (1, 1, 1, 3, 1, 0);
-INSERT INTO "bag" VALUES (2, 1, 2, 0, 0, 0);
+INSERT INTO "bag" VALUES (1, 1, 1, 0, 0, 0);
+INSERT INTO "bag" VALUES (2, 1, 2, 1, 2, 42);
 INSERT INTO "bag" VALUES (3, 1, 3, 0, 0, 0);
 INSERT INTO "bag" VALUES (4, 1, 4, 0, 0, 0);
 INSERT INTO "bag" VALUES (5, 1, 5, 0, 0, 0);
@@ -135,22 +135,21 @@ INSERT INTO "bag" VALUES (100, 10, 10, 0, 0, 0);
 COMMIT;
 
 -- ----------------------------
--- Table structure for conf
+-- Table structure for confnew
 -- ----------------------------
-DROP TABLE IF EXISTS "conf";
-CREATE TABLE "conf" (
-                        "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                        "confKey" TEXT NOT NULL,
-                        "confValue" TEXT
+DROP TABLE IF EXISTS "confnew";
+CREATE TABLE "confnew" (
+  "id" INTEGER NOT NULL,
+  "version" text NOT NULL,
+  "WeightMin" integer NOT NULL,
+  "HeightMin" integer NOT NULL
 );
 
 -- ----------------------------
--- Records of conf
+-- Records of confnew
 -- ----------------------------
 BEGIN;
-INSERT INTO "conf" VALUES (1, 'version', '0.0.1');
-INSERT INTO "conf" VALUES (2, 'WeightMin', 120);
-INSERT INTO "conf" VALUES (3, 'HeightMin', 40);
+INSERT INTO "confnew" VALUES (1, '0.0.1', 120, 40);
 COMMIT;
 
 -- ----------------------------
@@ -184,133 +183,134 @@ CREATE TABLE "field" (
   "fieldid" integer NOT NULL,
   "plantid" INTEGER NOT NULL,
   "duringtime" float NOT NULL,
-  "isopen" integer NOT NULL
+  "isopen" integer NOT NULL,
+  "timeneed" integer
 );
 
 -- ----------------------------
 -- Records of field
 -- ----------------------------
 BEGIN;
-INSERT INTO "field" VALUES (1, 1, 1, 0, 0.0, 1);
-INSERT INTO "field" VALUES (2, 1, 2, 3, 546.0, 1);
-INSERT INTO "field" VALUES (3, 1, 3, 3, 546.0, 1);
-INSERT INTO "field" VALUES (4, 1, 4, 0, 0.0, 1);
-INSERT INTO "field" VALUES (5, 1, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (6, 1, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (7, 1, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (8, 1, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (9, 1, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (10, 1, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (11, 1, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (12, 1, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (13, 2, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (14, 2, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (15, 2, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (16, 2, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (17, 2, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (18, 2, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (19, 2, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (20, 2, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (21, 2, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (22, 2, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (23, 2, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (24, 2, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (25, 3, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (26, 3, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (27, 3, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (28, 3, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (29, 3, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (30, 3, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (31, 3, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (32, 3, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (33, 3, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (34, 3, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (35, 3, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (36, 3, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (49, 5, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (50, 5, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (51, 5, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (52, 5, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (53, 5, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (54, 5, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (55, 5, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (56, 5, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (57, 5, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (58, 5, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (59, 5, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (60, 5, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (61, 6, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (62, 6, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (63, 6, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (64, 6, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (65, 6, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (66, 6, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (67, 6, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (68, 6, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (69, 6, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (70, 6, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (71, 6, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (72, 6, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (73, 7, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (74, 7, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (75, 7, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (76, 7, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (77, 7, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (78, 7, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (79, 7, 7, 0, 0.0, 1);
-INSERT INTO "field" VALUES (80, 7, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (81, 7, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (82, 7, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (83, 7, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (84, 7, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (85, 8, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (86, 8, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (87, 8, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (88, 8, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (89, 8, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (90, 8, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (91, 8, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (92, 8, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (93, 8, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (94, 8, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (95, 8, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (96, 8, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (97, 9, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (98, 9, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (99, 9, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (100, 9, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (101, 9, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (102, 9, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (103, 9, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (104, 9, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (105, 9, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (106, 9, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (107, 9, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (108, 9, 12, 0, 0.0, 0);
-INSERT INTO "field" VALUES (109, 10, 1, 0, 0.0, 0);
-INSERT INTO "field" VALUES (110, 10, 2, 0, 0.0, 0);
-INSERT INTO "field" VALUES (111, 10, 3, 0, 0.0, 0);
-INSERT INTO "field" VALUES (112, 10, 4, 0, 0.0, 0);
-INSERT INTO "field" VALUES (113, 10, 5, 0, 0.0, 0);
-INSERT INTO "field" VALUES (114, 10, 6, 0, 0.0, 0);
-INSERT INTO "field" VALUES (115, 10, 7, 0, 0.0, 0);
-INSERT INTO "field" VALUES (116, 10, 8, 0, 0.0, 0);
-INSERT INTO "field" VALUES (117, 10, 9, 0, 0.0, 0);
-INSERT INTO "field" VALUES (118, 10, 10, 0, 0.0, 0);
-INSERT INTO "field" VALUES (119, 10, 11, 0, 0.0, 0);
-INSERT INTO "field" VALUES (120, 10, 12, 0, 0.0, 0);
+INSERT INTO "field" VALUES (1, 1, 1, 1, 2177.0, 1, 10000);
+INSERT INTO "field" VALUES (2, 1, 2, 0, 0.0, 1, 0);
+INSERT INTO "field" VALUES (3, 1, 3, 0, 0.0, 1, 0);
+INSERT INTO "field" VALUES (4, 1, 4, 1, 219.0, 1, 10000);
+INSERT INTO "field" VALUES (5, 1, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (6, 1, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (7, 1, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (8, 1, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (9, 1, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (10, 1, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (11, 1, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (12, 1, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (13, 2, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (14, 2, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (15, 2, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (16, 2, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (17, 2, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (18, 2, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (19, 2, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (20, 2, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (21, 2, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (22, 2, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (23, 2, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (24, 2, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (25, 3, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (26, 3, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (27, 3, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (28, 3, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (29, 3, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (30, 3, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (31, 3, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (32, 3, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (33, 3, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (34, 3, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (35, 3, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (36, 3, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (38, 4, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (49, 5, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (50, 5, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (51, 5, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (52, 5, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (53, 5, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (54, 5, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (55, 5, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (56, 5, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (57, 5, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (58, 5, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (59, 5, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (60, 5, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (61, 6, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (62, 6, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (63, 6, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (64, 6, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (65, 6, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (66, 6, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (67, 6, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (68, 6, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (69, 6, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (70, 6, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (71, 6, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (72, 6, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (73, 7, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (74, 7, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (75, 7, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (76, 7, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (77, 7, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (78, 7, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (79, 7, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (80, 7, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (81, 7, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (82, 7, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (83, 7, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (84, 7, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (85, 8, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (86, 8, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (87, 8, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (88, 8, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (89, 8, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (90, 8, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (91, 8, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (92, 8, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (93, 8, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (94, 8, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (95, 8, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (96, 8, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (97, 9, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (98, 9, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (99, 9, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (100, 9, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (101, 9, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (102, 9, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (103, 9, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (104, 9, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (105, 9, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (106, 9, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (107, 9, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (108, 9, 12, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (109, 10, 1, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (110, 10, 2, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (111, 10, 3, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (112, 10, 4, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (113, 10, 5, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (114, 10, 6, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (115, 10, 7, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (116, 10, 8, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (117, 10, 9, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (118, 10, 10, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (119, 10, 11, 0, 0.0, 0, 0);
+INSERT INTO "field" VALUES (120, 10, 12, 0, 0.0, 0, 0);
 COMMIT;
 
 -- ----------------------------
@@ -324,6 +324,7 @@ CREATE TABLE "plant" (
   "level" integer,
   "price" integer,
   "ex" integer,
+  "yield" integer NOT NULL DEFAULT 30,
   PRIMARY KEY ("id")
 );
 
@@ -331,9 +332,9 @@ CREATE TABLE "plant" (
 -- Records of plant
 -- ----------------------------
 BEGIN;
-INSERT INTO "plant" VALUES (1, '天仙子', 10000.0, 0, 100, 3);
-INSERT INTO "plant" VALUES (2, '幽香绮罗仙品', 200000.0, 20, 100000, 1000);
-INSERT INTO "plant" VALUES (3, '天仙子2', 1000.0, 0, 1, 1);
+INSERT INTO "plant" VALUES (1, '天仙子', 10000.0, 0, 100, 3, 30);
+INSERT INTO "plant" VALUES (2, '幽香绮罗仙品', 200000.0, 20, 100000, 1000, 30);
+INSERT INTO "plant" VALUES (3, '天仙子2', 1000.0, 0, 1, 1, 30);
 COMMIT;
 
 -- ----------------------------
@@ -367,43 +368,31 @@ CREATE TABLE sqlite_sequence(name,seq);
 -- Records of sqlite_sequence
 -- ----------------------------
 BEGIN;
-INSERT INTO "sqlite_sequence" VALUES ('conf', 3);
-INSERT INTO "sqlite_sequence" VALUES ('userinfo', 9);
 COMMIT;
 
 -- ----------------------------
--- Table structure for userinfo
+-- Table structure for userinfonew
 -- ----------------------------
-DROP TABLE IF EXISTS "userinfo";
-CREATE TABLE "userinfo" (
-                            "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            "infoKey" TEXT NOT NULL,
-                            "infoValue" TEXT
+DROP TABLE IF EXISTS "userinfonew";
+CREATE TABLE "userinfonew" (
+  "id" INTEGER NOT NULL DEFAULT 1,
+  "username" TEXT,
+  "farmname" TEXT,
+  "farmclassid" INTEGER,
+  "petname" TEXT,
+  "money" integer,
+  "ex" integer,
+  "level" integer,
+  "nextfieldneed" integer,
+  "userage" integer,
+  PRIMARY KEY ("id")
 );
 
 -- ----------------------------
--- Records of userinfo
+-- Records of userinfonew
 -- ----------------------------
 BEGIN;
-INSERT INTO "userinfo" VALUES (1, 'username', 1);
-INSERT INTO "userinfo" VALUES (2, 'userage', 2);
-INSERT INTO "userinfo" VALUES (3, 'farmname', 3);
-INSERT INTO "userinfo" VALUES (4, 'farmclassid', 3);
-INSERT INTO "userinfo" VALUES (5, 'petname', 5);
-INSERT INTO "userinfo" VALUES (6, 'money', 4000);
-INSERT INTO "userinfo" VALUES (7, 'ex', 0);
-INSERT INTO "userinfo" VALUES (8, 'level', 0);
-INSERT INTO "userinfo" VALUES (9, 'nextfieldneedmoney', 2000);
+INSERT INTO "userinfonew" VALUES (1, 11, 33, 3, 5, 500, NULL, NULL, 1000, 22);
 COMMIT;
-
--- ----------------------------
--- Auto increment value for conf
--- ----------------------------
-UPDATE "main"."sqlite_sequence" SET seq = 3 WHERE name = 'conf';
-
--- ----------------------------
--- Auto increment value for userinfo
--- ----------------------------
-UPDATE "main"."sqlite_sequence" SET seq = 9 WHERE name = 'userinfo';
 
 PRAGMA foreign_keys = true;
