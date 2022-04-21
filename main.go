@@ -10,10 +10,8 @@ package main
 import (
 	_ "farm/cron"
 	"farm/page"
-	"farm/screen"
 	"farm/service"
 	"farm/tools"
-	"fmt"
 	"github.com/gdamore/tcell/v2"
 	"github.com/gdamore/tcell/v2/encoding"
 	"github.com/gogf/gf/frame/g"
@@ -25,11 +23,7 @@ func init() {
 
 	service.VerifyVersion()
 }
-func main2() {
-	a, b := screen.GetPageAndCount(7, 5, 3)
-	fmt.Println(a)
-	fmt.Println(b)
-}
+
 func main() {
 
 	g.Log().Println("创建窗口")

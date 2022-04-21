@@ -18,17 +18,17 @@ func GetUserInfo(infoKey string) string {
 
 	switch infoKey {
 	case "username":
-		sql = `select username infoValue from userinfonew where  id = 1;`
+		sql = `select username infoValue from userinfo where  id = 1;`
 	case "petname":
-		sql = `select petname infoValue from userinfonew where  id = 1;`
+		sql = `select petname infoValue from userinfo where  id = 1;`
 	case "farmname":
-		sql = `select farmname infoValue from userinfonew where  id = 1;`
+		sql = `select farmname infoValue from userinfo where  id = 1;`
 
 	case "farmclassid":
-		sql = `select farmclassid infoValue from userinfonew where  id = 1;`
+		sql = `select farmclassid infoValue from userinfo where  id = 1;`
 
 	case "userage":
-		sql = `select userage infoValue from userinfonew where  id = 1;`
+		sql = `select userage infoValue from userinfo where  id = 1;`
 
 	}
 
@@ -44,17 +44,17 @@ func UpdateUserInfo(infoKey string, infoValue string) {
 	var sql string
 	switch infoKey {
 	case "username":
-		sql = `UPDATE "main"."userinfonew" SET username= ? WHERE "id" = 1;`
+		sql = `UPDATE "main"."userinfo" SET username= ? WHERE "id" = 1;`
 	case "petname":
-		sql = `UPDATE "main"."userinfonew" SET petname= ? WHERE "id" = 1;`
+		sql = `UPDATE "main"."userinfo" SET petname= ? WHERE "id" = 1;`
 	case "farmname":
-		sql = `UPDATE "main"."userinfonew" SET farmname= ? WHERE "id" = 1;`
+		sql = `UPDATE "main"."userinfo" SET farmname= ? WHERE "id" = 1;`
 
 	case "farmclassid":
-		sql = `UPDATE "main"."userinfonew" SET farmclassid= ? WHERE "id" = 1;`
+		sql = `UPDATE "main"."userinfo" SET farmclassid= ? WHERE "id" = 1;`
 
 	case "userage":
-		sql = `UPDATE "main"."userinfonew" SET userage= ? WHERE "id" = 1;`
+		sql = `UPDATE "main"."userinfo" SET userage= ? WHERE "id" = 1;`
 
 	}
 

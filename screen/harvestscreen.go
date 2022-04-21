@@ -21,11 +21,15 @@ func HarvestScreen(s tcell.Screen, id int, fieldId int) {
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
 
-	HarvestInfo := service.Harvest(id, fieldId)
+	status, HarvestInfo := service.Harvest(id, fieldId)
 	emitStr(s, 3, 5, style, "园地编号 : "+tools.NumToChinsesT(id)+tools.NumToChinsesD(fieldId))
+	if status == true {
 
-	emitStr(s, 3, 6, style, "收获"+HarvestInfo.PlantName+"共"+
-		gconv.String(HarvestInfo.Yield)+"份,已经放入背包。")
+		emitStr(s, 3, 6, style, "收获"+HarvestInfo.PlantName+"共"+
+			gconv.String(HarvestInfo.Yield)+"份,已经放入背包。")
+	} else {
+		emitStr(s, 3, 6, style, "背包已满，请清理背包")
+	}
 
 	infoMessageScreen(s, []model.ScreenInfoMessage{bPress, nPress, qPress})
 	s.Show()

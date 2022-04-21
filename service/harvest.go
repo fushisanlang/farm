@@ -12,7 +12,7 @@ import (
 	"github.com/gogf/gf/util/gconv"
 )
 
-func Harvest(id int, fieldId int) model.Harvest {
+func Harvest(id int, fieldId int) (bool, model.Harvest) {
 
 	Harvest := Dao.HarvestPlant(id, fieldId)
 
@@ -22,9 +22,13 @@ func Harvest(id int, fieldId int) model.Harvest {
 		PlantName: gconv.String(Harvest["plantname"]),
 		Yield:     gconv.Int(Harvest["yield"]),
 	}
-
-	Dao.HarvestBag(HarvestInfo)
-	Dao.HarvestField(id, fieldId)
-	Dao.HarvestEx(HarvestInfo)
-	return HarvestInfo
+	bagId := Dao.GetHarvestBagId(HarvestInfo)
+	if bagId == 0 {
+		return false, HarvestInfo
+	} else {
+		Dao.HarvestBag(HarvestInfo, bagId)
+		Dao.HarvestField(id, fieldId)
+		Dao.HarvestEx(HarvestInfo)
+	}
+	return true, HarvestInfo
 }

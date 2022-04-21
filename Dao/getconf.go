@@ -20,12 +20,12 @@ func GetConf(confKey string) string {
 	var sql string
 	switch confKey {
 	case "version":
-		sql = "select version confValue from `confnew` where  id = 1"
+		sql = "select version confValue from `conf` where  id = 1"
 	case "WeightMin":
-		sql = "select WeightMin confValue from `confnew` where  id = 1"
+		sql = "select WeightMin confValue from `conf` where  id = 1"
 
 	case "HeightMin":
-		sql = "select HeightMin confValue from `confnew` where  id = 1"
+		sql = "select HeightMin confValue from `conf` where  id = 1"
 
 	}
 	ConfValue, _ := g.DB().GetOne(sql)

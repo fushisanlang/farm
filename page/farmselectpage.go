@@ -46,7 +46,9 @@ func farmSelectPage(s tcell.Screen, page int) {
 				case '5':
 					s.Sync()
 					FarmPage(s, 1, 5+(page-1)*5)
-
+				case 'v':
+					s.Sync()
+					firstStorePage(s)
 				case 'q':
 					s.Fini()
 					os.Exit(0)

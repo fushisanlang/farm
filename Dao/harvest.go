@@ -30,15 +30,12 @@ WHERE
 
 	harvest, err := g.DB().GetOne(sql, id, fieldId)
 	tools.CheckErr(err)
-	g.Log().Println("收获信息:" + gconv.String(harvest))
 
 	return harvest
 
 }
-func HarvestBag(Harvest model.Harvest) {
-	//加背包
-	sql := `update bag set countnum = countnum + ?, groupid = 2, linkid = ? WHERE keyid =  
-(SELECT
+func GetHarvestBagId(Harvest model.Harvest) int {
+	sql := `SELECT
 CASE
 	WHEN
 			(SELECT keyid FROM bag WHERE linkid = ? AND groupid = 2 ) ISNULL 
@@ -46,9 +43,21 @@ CASE
 			(SELECT keyid FROM bag WHERE linkid = 0 AND countnum = 0 AND groupid = 0 ORDER BY keyid LIMIT 1 ) 
 	ELSE 
 			(SELECT keyid FROM bag WHERE linkid = ? AND groupid = 2 ) 
-	END )
-`
-	_, err := g.DB().Exec(sql, Harvest.Yield, Harvest.PlantId, Harvest.PlantId, Harvest.PlantId)
+	END as id`
+	BagId, err := g.DB().GetOne(sql, Harvest.PlantId, Harvest.PlantId)
+	tools.CheckErr(err)
+	if gconv.String(BagId["id"]) == "NULL" {
+		return 0
+	} else {
+		return gconv.Int(BagId["id"])
+	}
+
+}
+func HarvestBag(Harvest model.Harvest, bagId int) {
+	//加背包
+	sql := `update bag set countnum = countnum + ?, groupid = 2, linkid = ? WHERE keyid =  ?`
+
+	_, err := g.DB().Exec(sql, Harvest.Yield, Harvest.PlantId, bagId)
 	tools.CheckErr(err)
 }
 func HarvestField(id int, fieldId int) {
@@ -66,7 +75,7 @@ WHERE
 }
 func HarvestEx(Harvest model.Harvest) {
 	sql := `
-UPDATE userinfonew 
+UPDATE userinfo 
 SET ex =( ( SELECT ex FROM plant WHERE id = ? ) * ?  + ex ) % ( ( level + 1 ) * 100 ),
 level = level + ( ( SELECT ex FROM plant WHERE id = ? ) * ? + ex ) / ( ( level + 1 ) * 100 ) 
 WHERE

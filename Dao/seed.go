@@ -30,41 +30,47 @@ FROM
 WHERE
 	b.groupid = 1 
 	AND b.countnum > 0 
-	AND p.level <= ( SELECT level from userinfonew where id = 1 ) 
+	AND p.level <= ( SELECT level from userinfo where id = 1 ) 
 	AND b.linkid = p.id
 `
 	SeedList, _ := g.DB().GetAll(sql)
+
+	g.Log().Println("SeedList " + gconv.String(SeedList))
+
 	return SeedList
 
 }
-func PlantSeed(screenId int, fieldId int, Id int, bagId int) {
 
+func plantSeedUpdateField(screenId int, fieldId int, Id int, bagId int) {
+	/*
+		sql := `UPDATE "main"."field"
+				SET
+					"plantid" = ( SELECT linkid FROM bag WHERE id = ? AND bagid = ? ),
+					"duringtime" = 0,
+					"timeneed" = (select timeneed from plant where id =
+						(SELECT linkid FROM bag WHERE id = ? AND bagid = ? ))
+				WHERE
+					"id" = ?
+					AND "fieldid" = ?;`
+
+	*/
 	sql := `UPDATE "main"."field" 
 			SET 
-				"plantid" = ( SELECT linkid FROM bag WHERE id = ? AND bagid = ? ),
+				"plantid" = ( SELECT linkid FROM bag WHERE id = ` + gconv.String(Id) + ` AND bagid =  ` + gconv.String(bagId) + ` ),
 				"duringtime" = 0,
 				"timeneed" = (select timeneed from plant where id = 
-					(SELECT linkid FROM bag WHERE id = ? AND bagid = ? ))
+					(SELECT linkid FROM bag WHERE id =  ` + gconv.String(Id) + ` AND bagid =  ` + gconv.String(bagId) + ` ))
 			WHERE
-				"id" = ?
-				AND "fieldid" = ?;
--- -------------------
-			UPDATE bag 
-			SET 
-				countnum = countnum - 1 
-			WHERE
-				id = ?
-				AND bagid = ?; 
--- -------------------
-			update bag 
-			set 
-				linkid = 0 , 
-				groupid = 0,
-				countnum = 0  
-			where 
-				countnum <= 0;
--- -------------------
-			UPDATE userinfonew 
+				"id" =  ` + gconv.String(screenId) + `
+				AND "fieldid" =  ` + gconv.String(fieldId) + `;`
+	_, err := g.DB().Exec(sql)
+	g.Log().Println(sql)
+
+	tools.CheckErr(err)
+
+}
+func plantSeedUpdateUserInfo(Id int, bagId int) {
+	sql := `UPDATE userinfo 
 			SET 
 				ex =( 
 					( SELECT ex FROM plant WHERE id =( SELECT linkid FROM bag WHERE id = ? AND bagid = ? ) )+ ex ) 
@@ -77,11 +83,43 @@ func PlantSeed(screenId int, fieldId int, Id int, bagId int) {
 			WHERE
 				id = 1;
 `
-
-	g.Log().Println("播种 " + gconv.String(screenId) + " " + gconv.String(fieldId) +
-		" " + gconv.String(Id) + " " + gconv.String(bagId) + " ")
-
-	_, err := g.DB().Exec(sql, Id, bagId, Id, bagId, screenId, fieldId, Id, bagId, Id, bagId, Id, bagId)
+	_, err := g.DB().Exec(sql, Id, bagId, Id, bagId)
 	tools.CheckErr(err)
+}
+
+func plantSeedUpdateBag(Id int, bagId int) {
+	sql := `UPDATE bag 
+			SET 
+				countnum = countnum - 1 
+			WHERE
+				id = ?
+				AND bagid = ?;
+`
+	_, err := g.DB().Exec(sql, Id, bagId)
+	tools.CheckErr(err)
+}
+func plantSeedUpdateBagClean() {
+	sql := `update bag 
+			set 
+				linkid = 0 , 
+				groupid = 0,
+				countnum = 0  
+			where 
+				countnum <= 0;
+`
+	_, err := g.DB().Exec(sql)
+	tools.CheckErr(err)
+}
+
+func PlantSeed(screenId int, fieldId int, Id int, bagId int) {
+	g.Log().Println("screenId :" + gconv.String(screenId))
+	g.Log().Println("fieldId :" + gconv.String(fieldId))
+	g.Log().Println("Id :" + gconv.String(Id))
+	g.Log().Println("bagId :" + gconv.String(bagId))
+
+	plantSeedUpdateField(screenId, fieldId, Id, bagId)
+	plantSeedUpdateUserInfo(Id, bagId)
+	plantSeedUpdateBag(Id, bagId)
+	plantSeedUpdateBagClean()
 
 }

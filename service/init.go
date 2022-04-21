@@ -15,8 +15,10 @@ var UserInfo model.UserInfo
 var Version string
 var HeightMin, WeightMin int
 var DbVersion string
+var RatioBuy, RatioSale float32
 
 func init() {
+	RatioBuy, RatioSale = 1, 1
 	Version = "0.0.1"
 	DbVersion = GetConf("version")
 	WeightMin = gconv.Int(GetConf("WeightMin"))

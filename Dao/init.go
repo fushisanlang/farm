@@ -20,7 +20,7 @@ func InitData() {
 	openField()
 }
 func eraseUserTable() {
-	sql := `UPDATE "main"."userinfonew" SET "username" = NULL,"userage" = NULL, "farmname" = NULL, "farmclassid" = NULL, "petname" = NULL, "money" = 1000, "ex" = 0, "level" = 0, "nextfieldneed" = 500 WHERE "id" = 1;`
+	sql := `UPDATE "main"."userinfo" SET "username" = NULL,"userage" = NULL, "farmname" = NULL, "farmclassid" = NULL, "petname" = NULL, "money" = 1000, "ex" = 0, "level" = 0, "nextfieldneed" = 500 WHERE "id" = 1;`
 	_, err := g.DB().Exec(sql)
 	tools.CheckErr(err)
 }

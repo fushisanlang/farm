@@ -18,5 +18,6 @@ func WaitScreen(s tcell.Screen, Waitstring string) {
 		Foreground(tcell.ColorWhite)
 	emitStr(s, 3, 5, style, Waitstring)
 
+	emitStr(s, 3, 4, style, Waitstring)
 	s.Show()
 }

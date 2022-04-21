@@ -15,7 +15,7 @@ import (
 
 func selectSeedPage(s tcell.Screen, screenId int, fieldId int, page int) {
 	seedList := service.GetSeedList()
-	page, pageCount := screen.SelectSeedScreen(s, page, seedList)
+	page, pageCount, basePageCount := screen.SelectSeedScreen(s, page, seedList)
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:
@@ -44,31 +44,34 @@ func selectSeedPage(s tcell.Screen, screenId int, fieldId int, page int) {
 				case '1':
 					s.Sync()
 					if pageCount > 0 {
-						service.PlantSeed(screenId, fieldId, seedList[1+(page-1)-1].Id, seedList[1+(page-1)-1].BagId)
+						service.PlantSeed(screenId, fieldId, seedList[1+(page-1)-1].Id, seedList[1+(page-1)*basePageCount-1].BagId)
 						farmSelectPage(s, 1)
 					}
 				case '2':
 					s.Sync()
 					if pageCount > 1 {
-						service.PlantSeed(screenId, fieldId, seedList[2+(page-1)-1].Id, seedList[1+(page-1)-1].BagId)
+						//2            2 + (2-1)*5 -1 =2+5-1=6
+						service.PlantSeed(screenId, fieldId, seedList[2+(page-1)-1].Id, seedList[2+(page-1)*basePageCount-1].BagId)
 						farmSelectPage(s, 1)
 					}
 				case '3':
 					s.Sync()
 					if pageCount > 2 {
-						service.PlantSeed(screenId, fieldId, seedList[3+(page-1)-1].Id, seedList[1+(page-1)-1].BagId)
+						//                3+(2-1)*5 -1 = 7    3+(2-1)*3 - 1 = 2+3
+						service.PlantSeed(screenId, fieldId, seedList[3+(page-1)-1].Id, seedList[3+(page-1)*basePageCount-1].BagId)
 						farmSelectPage(s, 1)
 					}
 				case '4':
 					s.Sync()
-					if pageCount > 3 {
-						service.PlantSeed(screenId, fieldId, seedList[4+(page-1)-1].Id, seedList[1+(page-1)-1].BagId)
+					if pageCount > 3 { // 1，4，1，2
+						service.PlantSeed(screenId, fieldId, seedList[4+(page-1)-1].Id, seedList[4+(page-1)*basePageCount-1].BagId)
 						farmSelectPage(s, 1)
 					}
 				case '5':
 					s.Sync()
 					if pageCount > 4 {
-						service.PlantSeed(screenId, fieldId, seedList[5+(page-1)-1].Id, seedList[1+(page-1)-1].BagId)
+						//page = 2 ,[5+2-1-1]
+						service.PlantSeed(screenId, fieldId, seedList[5+(page-1)-1].Id, seedList[5+(page-1)*basePageCount-1].BagId)
 						farmSelectPage(s, 1)
 					}
 				}
