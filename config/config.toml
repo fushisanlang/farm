@@ -1,6 +1,13 @@
 [database]
-link = "/Users/fushisanlang/src/go/farm/farm.db"
-type = "sqlite"
+    [database.logger]
+        Path   = "/Users/fushisanlang/src/go/farm/logs"
+        Level  = "all"
+        Stdout = true
+    [database.default]
+        link = "/Users/fushisanlang/src/go/farm/farm.db"
+        type = "sqlite"
+#        debug  = true
+
 [logger]
 path = "/Users/fushisanlang/src/go/farm/logs"
 

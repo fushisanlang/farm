@@ -15,8 +15,8 @@ func InitData() {
 	g.Log().Println("InitData")
 	eraseUserTable()
 	eraseFieldTable()
-	eraseBagTable()
-	giveSeed()
+	//eraseBagTable()
+	//giveSeed()
 	openField()
 }
 func eraseUserTable() {

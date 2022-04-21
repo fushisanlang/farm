@@ -17,7 +17,7 @@ import (
 func HarvestPlant(id int, fieldId int) gdb.Record {
 	sql := `SELECT
 	p.plantname plantname,
-	CAST ( p.yield / 2 * ( 1 + ( RANDOM( ) + 9223372036854775808 ) / 2.0 / 9223372036854775808 ) AS INTEGER ) yield ,
+	CAST ( p.yield / 2 * ( 1 + ( RANDOM( ) + 9223372036854775808 ) / 2.0 / 9223372036854775808 + 1) AS INTEGER ) yield ,
 	f.plantid plantid
 FROM
 	field f,

@@ -13,14 +13,18 @@ import (
 )
 
 func Harvest(id int, fieldId int) (bool, model.Harvest) {
-
-	Harvest := Dao.HarvestPlant(id, fieldId)
-
 	var HarvestInfo model.Harvest
-	HarvestInfo = model.Harvest{
-		PlantId:   gconv.Int(Harvest["plantid"]),
-		PlantName: gconv.String(Harvest["plantname"]),
-		Yield:     gconv.Int(Harvest["yield"]),
+	for true {
+		Harvest := Dao.HarvestPlant(id, fieldId)
+
+		HarvestInfo = model.Harvest{
+			PlantId:   gconv.Int(Harvest["plantid"]),
+			PlantName: gconv.String(Harvest["plantname"]),
+			Yield:     gconv.Int(Harvest["yield"]),
+		}
+		if HarvestInfo.Yield != 0 {
+			break
+		}
 	}
 	bagId := Dao.GetHarvestBagId(HarvestInfo)
 	if bagId == 0 {
