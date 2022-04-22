@@ -47,7 +47,7 @@ func FieldPage(s tcell.Screen, screenId int, fieldId int, page int) {
 					}
 				case 'j': // 收获
 					s.Sync()
-					if fieldInfo.IsOpen == 1 && fieldInfo.PlantName != "" {
+					if fieldInfo.IsOpen == 1 && fieldInfo.PlantName != "" && fieldInfo.DuringTime >= fieldInfo.NeedTime {
 						harvestPage(s, screenId, fieldId, page)
 					}
 
