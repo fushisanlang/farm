@@ -7,15 +7,17 @@
 package page
 
 import (
+	"farm/model"
 	"farm/screen"
+	"farm/service"
+	"farm/tools"
 	"github.com/gdamore/tcell/v2"
-	"github.com/gogf/gf/util/gconv"
 	"os"
 )
 
-func firstStorePage(s tcell.Screen) {
+func saleGoodsInfoPage(s tcell.Screen, KeyId int, ratioSale int, goodsInfo model.GoodsList) {
 
-	RatioBuy, RatioSale := screen.FirstStoreScreen(s)
+	screen.SaleGoodsInfoScreen(s, KeyId, ratioSale, goodsInfo)
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:
@@ -30,14 +32,18 @@ func firstStorePage(s tcell.Screen) {
 				case 'n':
 					s.Sync()
 					farmSelectPage(s, 1)
+				case 'i':
+					s.Fini()
 
-				case '1':
+					tools.CallClear()
+					service.SaleGoods(goodsInfo, ratioSale)
+					tools.CallClear()
+					s = service.CreateNewScreen()
+
+					saleStorePage(s, 1, ratioSale)
+				case 'b':
 					s.Sync()
-					//buyStorePage(s)
-					WaitPage(s, "buyStorePage"+gconv.String(RatioBuy))
-				case '2':
-					s.Sync()
-					saleStorePage(s, 1, RatioSale)
+					saleStorePage(s, 1, ratioSale)
 
 				case 'q':
 					s.Fini()

@@ -13,7 +13,7 @@ import (
 	"github.com/gogf/gf/util/gconv"
 )
 
-func SelectGoodsScreen(s tcell.Screen, page int, goodsList []model.GoodsList) (int, int, int) {
+func SelectGoodsScreen(s tcell.Screen, page int, goodsList []model.GoodsList, ratioSale int) (int, int, int) {
 	var pageCount int
 	pageCount = 5
 	basePageCount := pageCount
@@ -34,7 +34,7 @@ func SelectGoodsScreen(s tcell.Screen, page int, goodsList []model.GoodsList) (i
 			emitStr(s, 3, 5+(8*i), style, "物品名称 ： "+goodsList[i+(page-1)*basePageCount].Name) // i + (2-1) * 3
 			emitStr(s, 30, 5+(8*i), style, "选取按键 ： "+tools.NumToKeyMap((i+1)%10))
 			emitStr(s, 3, 6+(8*i), style, "物品数量 ： "+gconv.String(goodsList[i+(page-1)*basePageCount].Countnum))
-			emitStr(s, 30, 6+(8*i), style, "物品价格 ： "+gconv.String(goodsList[i+(page-1)*basePageCount].Price))
+			emitStr(s, 30, 6+(8*i), style, "物品价格 ： "+gconv.String(goodsList[i+(page-1)*basePageCount].Price*ratioSale/100))
 
 		}
 	}

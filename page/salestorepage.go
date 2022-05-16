@@ -13,9 +13,12 @@ import (
 	"os"
 )
 
-func saleStorePage(s tcell.Screen, page int) {
+//显示背包可卖物品列表，每页5个，左右键翻页
+func saleStorePage(s tcell.Screen, page int, ratioSale int) {
 	goodsList := service.GetGoodsList()
-	page, pageCount, basePageCount := screen.SelectGoodsScreen(s, page, goodsList)
+	page, pageCount, basePageCount := screen.SelectGoodsScreen(s, page, goodsList, ratioSale)
+	//page, _, _ = screen.SelectGoodsScreen(s, page, goodsList,ratioSale)
+
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:
@@ -26,11 +29,12 @@ func saleStorePage(s tcell.Screen, page int) {
 				os.Exit(0)
 			case tcell.KeyRight:
 				s.Sync()
-				saleStorePage(s, page+1)
+				saleStorePage(s, page+1, ratioSale)
 			case tcell.KeyLeft:
 				s.Sync()
-				saleStorePage(s, page-1)
+				saleStorePage(s, page-1, ratioSale)
 			case tcell.KeyRune:
+
 				switch ev.Rune() {
 				case 'n':
 					s.Sync()
@@ -42,40 +46,39 @@ func saleStorePage(s tcell.Screen, page int) {
 				case '1':
 					s.Sync()
 					if pageCount > 0 {
-						service.PlantSeed(screenId, fieldId, seedList[1+(page-1)-1].Id, seedList[1+(page-1)*basePageCount-1].BagId)
-						farmSelectPage(s, 1)
+						//salePage(s,id,"本页信息") (页面信息，前页信息）
+						//根据按键输入，从list拿到相应goods的详细信息
+						saleGoodsInfoPage(s, goodsList[1+(page-1)*basePageCount-1].KeyId, ratioSale, goodsList[1+(page-1)*basePageCount-1])
 					}
 				case '2':
 					s.Sync()
 					if pageCount > 1 {
 						//2            2 + (2-1)*5 -1 =2+5-1=6
-						service.PlantSeed(screenId, fieldId, seedList[2+(page-1)-1].Id, seedList[2+(page-1)*basePageCount-1].BagId)
-						farmSelectPage(s, 1)
+						//saleGoodsInfoPage
+						saleGoodsInfoPage(s, goodsList[2+(page-1)*basePageCount-1].KeyId, ratioSale, goodsList[2+(page-1)*basePageCount-1])
 					}
 				case '3':
 					s.Sync()
-					if pageCount > 2 {
-						//                3+(2-1)*5 -1 = 7    3+(2-1)*3 - 1 = 2+3
-						service.PlantSeed(screenId, fieldId, seedList[3+(page-1)-1].Id, seedList[3+(page-1)*basePageCount-1].BagId)
-						farmSelectPage(s, 1)
+					if pageCount > 1 {
+						//2            2 + (2-1)*5 -1 =2+5-1=6
+						saleGoodsInfoPage(s, goodsList[3+(page-1)*basePageCount-1].KeyId, ratioSale, goodsList[3+(page-1)*basePageCount-1])
 					}
 				case '4':
 					s.Sync()
-					if pageCount > 3 { // 1，4，1，2
-						service.PlantSeed(screenId, fieldId, seedList[4+(page-1)-1].Id, seedList[4+(page-1)*basePageCount-1].BagId)
-						farmSelectPage(s, 1)
+					if pageCount > 1 {
+						//2            2 + (2-1)*5 -1 =2+5-1=6
+						saleGoodsInfoPage(s, goodsList[4+(page-1)*basePageCount-1].KeyId, ratioSale, goodsList[4+(page-1)*basePageCount-1])
 					}
 				case '5':
 					s.Sync()
-					if pageCount > 4 {
-						//page = 2 ,[5+2-1-1]
-						service.PlantSeed(screenId, fieldId, seedList[5+(page-1)-1].Id, seedList[5+(page-1)*basePageCount-1].BagId)
-						farmSelectPage(s, 1)
+					if pageCount > 1 {
+						//2            2 + (2-1)*5 -1 =2+5-1=6
+						saleGoodsInfoPage(s, goodsList[5+(page-1)*basePageCount-1].KeyId, ratioSale, goodsList[5+(page-1)*basePageCount-1])
 					}
 				}
 
 			}
+
 		}
 	}
-
 }

@@ -35,6 +35,7 @@ func main() {
 	tools.CheckErr(err)
 	err = s.Init()
 	tools.CheckErr(err)
+
 	s.SetStyle(defStyle)
 
 	g.Log().Println("校验用户基础数据")

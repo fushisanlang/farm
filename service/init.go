@@ -23,4 +23,5 @@ func init() {
 	DbVersion = GetConf("version")
 	WeightMin = gconv.Int(GetConf("WeightMin"))
 	HeightMin = gconv.Int(GetConf("HeightMin"))
+
 }

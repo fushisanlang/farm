@@ -7,6 +7,8 @@
 package Dao
 
 import (
+	"farm/model"
+	"farm/tools"
 	"github.com/gogf/gf/database/gdb"
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/util/gconv"
@@ -20,7 +22,8 @@ SELECT
 	p.plantname name,
 	b.countnum countnum,
 	p.price price,
-	b.groupid groupid
+	b.groupid groupid,
+	'作物' type 
 FROM
 	bag b,
 	plant p 
@@ -32,8 +35,9 @@ SELECT
 	d.drugname name,
 	b.countnum countnum,
 	d.price price,
-	b.groupid groupid
-	FROM
+	b.groupid groupid,
+	'丹药' type 
+FROM
 	bag b,
 	drug d 
 WHERE
@@ -46,4 +50,14 @@ WHERE
 
 	return GoodsList
 
+}
+
+func SaleGoods(GoodsList model.GoodsList, goodsCount int, ratioSale int) {
+	money := GoodsList.Price * goodsCount * ratioSale / 100
+	sql := `update bag set countnum = countnum - ? where keyid = ?;update userinfo set money = money +  ?;`
+	_, err := g.DB().Exec(sql, goodsCount, GoodsList.KeyId, money)
+
+	tools.CheckErr(err)
+
+	autoCleanBag()
 }

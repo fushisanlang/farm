@@ -8,6 +8,7 @@ package screen
 
 import (
 	"farm/model"
+	"farm/service"
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/mattn/go-runewidth"
@@ -115,6 +116,7 @@ func infoMessageScreen(s tcell.Screen, messageList []model.ScreenInfoMessage) {
 
 		emitStr(s, 2, h-(lenMessageList-i)-1, tcell.StyleDefault, messageList[i].MessageStr)
 	}
+	infoMessageScreen3(s)
 }
 func infoMessageScreenColumn2(s tcell.Screen, messageList []model.ScreenInfoMessage) {
 	_, h := s.Size()
@@ -123,6 +125,14 @@ func infoMessageScreenColumn2(s tcell.Screen, messageList []model.ScreenInfoMess
 
 		emitStr(s, 22, h-(lenMessageList-i)-1, tcell.StyleDefault, messageList[i].MessageStr)
 	}
+}
+
+func infoMessageScreen3(s tcell.Screen) {
+	w, h := s.Size()
+	DateNow, TimeNow := service.TimeAndDate()
+
+	emitStr(s, w-60, h-2, tcell.StyleDefault, "    时间 : "+TimeNow)
+	emitStr(s, w-60, h-3, tcell.StyleDefault, "    日期 : "+DateNow)
 }
 
 // 7 , 5, 5
