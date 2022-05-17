@@ -8,14 +8,12 @@ package page
 
 import (
 	"farm/screen"
-	"farm/service"
 	"github.com/gdamore/tcell/v2"
 	"os"
 )
 
-func firstStorePage(s tcell.Screen) {
-
-	RatioBuy, RatioSale := screen.FirstStoreScreen(s)
+func buyStorePage(s tcell.Screen, RatioBuy int) {
+	screen.BuyStoreScreen(s)
 	for {
 		switch ev := s.PollEvent().(type) {
 		case *tcell.EventKey:
@@ -33,17 +31,14 @@ func firstStorePage(s tcell.Screen) {
 
 				case '1':
 					s.Sync()
-					bagNullId := service.GetNullBagId(0, 0)
-					if bagNullId != 0 {
-						buyStorePage(s, RatioBuy)
-					} else {
-						errorPage(s, "背包满。")
-					}
-
+					//buyStorePage(s)
+					buyPage(s, 1, RatioBuy)
 				case '2':
 					s.Sync()
-					saleStorePage(s, 1, RatioSale)
-
+					buyPage(s, 2, RatioBuy)
+				case '3':
+					s.Sync()
+					buyPage(s, 4, RatioBuy)
 				case 'q':
 					s.Fini()
 					os.Exit(0)

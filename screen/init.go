@@ -77,6 +77,32 @@ func printAllBox2(s tcell.Screen) {
 
 }
 
+func printAllBox3(s tcell.Screen) {
+	printBox3(s, 3, 2)
+	printBox3(s, 3, 8)
+	printBox3(s, 3, 14)
+	printBox3(s, 3, 20)
+	printBox3(s, 40, 2)
+	printBox3(s, 40, 8)
+	printBox3(s, 40, 14)
+	printBox3(s, 40, 20)
+
+}
+func printBox3(s tcell.Screen, x int, y int) {
+
+	style := tcell.StyleDefault.
+		Background(tcell.ColorBlack).
+		Foreground(tcell.ColorWhite)
+	emitStr(s, x, y, style, "+-----------------------------+")
+	emitStr(s, x, y+4, style, "+-----------------------------+")
+	emitStr(s, x, y+1, style, "|")
+	emitStr(s, x, y+2, style, "|")
+	emitStr(s, x, y+3, style, "|")
+	emitStr(s, x+30, y+1, style, "|")
+	emitStr(s, x+30, y+2, style, "|")
+	emitStr(s, x+30, y+3, style, "|")
+
+}
 func printBox2(s tcell.Screen, x int, y int) {
 
 	style := tcell.StyleDefault.
@@ -129,10 +155,13 @@ func infoMessageScreenColumn2(s tcell.Screen, messageList []model.ScreenInfoMess
 
 func infoMessageScreen3(s tcell.Screen) {
 	w, h := s.Size()
+	timeStyle := tcell.StyleDefault.
+		Background(tcell.ColorBlack).
+		Foreground(tcell.ColorGreen)
 	DateNow, TimeNow := service.TimeAndDate()
 
-	emitStr(s, w-60, h-2, tcell.StyleDefault, "    时间 : "+TimeNow)
-	emitStr(s, w-60, h-3, tcell.StyleDefault, "    日期 : "+DateNow)
+	emitStr(s, w-30, h-2, timeStyle, "    时间 : "+TimeNow)
+	emitStr(s, w-30, h-3, timeStyle, "    日期 : "+DateNow)
 }
 
 // 7 , 5, 5

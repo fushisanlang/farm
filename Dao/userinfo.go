@@ -26,7 +26,8 @@ func GetUserInfo(infoKey string) string {
 
 	case "farmclassid":
 		sql = `select farmclassid infoValue from userinfo where  id = 1;`
-
+	case "money":
+		sql = `select money infoValue from userinfo where  id = 1;`
 	case "userage":
 		sql = `select userage infoValue from userinfo where  id = 1;`
 

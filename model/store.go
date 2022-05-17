@@ -11,5 +11,12 @@ type GoodsList struct {
 	Name     string
 	Countnum int
 	Price    int
-	Groupid  int
+	GroupId  int
+}
+
+type BuyList struct {
+	Id      int
+	Name    string
+	Price   int
+	GroupId int
 }

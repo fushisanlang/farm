@@ -25,6 +25,8 @@ func OpenScreen(s tcell.Screen, id int, fieldId int) {
 	if fieldInfo.IsOpen == 0 {
 		OpenStatus, IsMoneyEnough := service.OpenField(id, fieldId)
 		if OpenStatus == true {
+			service.ChangeMemUserInfoMoney()
+
 			emitStr(s, 3, 6, style, "开启成功,剩余灵石："+gconv.String(IsMoneyEnough))
 		} else {
 			emitStr(s, 3, 6, style, "开启失败，灵石不足,尚缺少灵石："+gconv.String(0-IsMoneyEnough))

@@ -21,8 +21,8 @@ func FirstStoreScreen(s tcell.Screen) (int, int) {
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
 	RatioSale, RatioBuy := gconv.Int(service.RatioSale), gconv.Int(service.RatioBuy)
-	emitStr(s, 3, 5, style, "当前购买价格为实际价格的 : "+gconv.String(RatioBuy)+"%")
-	emitStr(s, 3, 6, style, "当前售卖价格为实际价格的 : "+gconv.String(RatioSale)+"%")
+	emitStr(s, 3, 5, style, "当前购买价格为标准价格的 : "+gconv.String(RatioBuy)+"%")
+	emitStr(s, 3, 6, style, "当前售卖价格为标准价格的 : "+gconv.String(RatioSale)+"%")
 	emitStr(s, 3, 7, style, "每次访问商店，价格都会变化。")
 
 	firstStoreScreen(s)
