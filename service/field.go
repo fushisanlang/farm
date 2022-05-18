@@ -61,3 +61,18 @@ func GetFieldInfoAll() []model.FieldInfoAll {
 func OpenField(id int, fieldId int) (bool, int) {
 	return Dao.OpenField(id, fieldId)
 }
+func FiledSummary() []model.FiledSummary {
+	filedSummaryList := Dao.FiledSummary().List()
+	var filedSummary model.FiledSummary
+	lenList := len(filedSummaryList)
+	FiledSummaryList := make([]model.FiledSummary, lenList, lenList)
+	for i := 0; i < lenList; i++ {
+		filedSummary.KeyId = gconv.Int(filedSummaryList[i]["keyid"])
+		filedSummary.IsOpen = gconv.Int(filedSummaryList[i]["isopen"])
+		filedSummary.DTime = gconv.Int(filedSummaryList[i]["duringtime"])
+		filedSummary.NTime = gconv.Int(filedSummaryList[i]["timeneed"])
+		FiledSummaryList[i] = filedSummary
+	}
+	return FiledSummaryList
+
+}

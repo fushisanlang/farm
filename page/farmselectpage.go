@@ -52,6 +52,9 @@ func farmSelectPage(s tcell.Screen, page int) {
 				case 'q':
 					s.Fini()
 					os.Exit(0)
+				case 's':
+					s.Sync()
+					FeildSummaryPage(s)
 				}
 
 			}

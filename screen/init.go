@@ -14,9 +14,12 @@ import (
 	"github.com/mattn/go-runewidth"
 )
 
-var bPress, iPress, vPress, nPress, qPress, oPress, leftPress, rightPress, uPress, jPress, kPress model.ScreenInfoMessage
+var bPress, iPress, vPress, nPress, qPress, oPress, leftPress, rightPress, uPress, jPress, kPress, sPress model.ScreenInfoMessage
+var styleGreen, styleBlue, styleGray tcell.Style
 
 func init() {
+	sPress.MessageStr = "       s : 总览"
+	sPress.MessageStatus = 3
 	bPress.MessageStr = "       b : 返回前一页"
 	bPress.MessageStatus = 3
 	iPress.MessageStr = "       i : 开启"
@@ -39,6 +42,15 @@ func init() {
 	rightPress.MessageStatus = 3
 	leftPress.MessageStr = "      <- : 上一页"
 	leftPress.MessageStatus = 3
+	styleGreen = tcell.StyleDefault.
+		Background(tcell.ColorBlack).
+		Foreground(tcell.ColorGreen)
+	styleBlue = tcell.StyleDefault.
+		Background(tcell.ColorBlack).
+		Foreground(tcell.ColorBlue)
+	styleGray = tcell.StyleDefault.
+		Background(tcell.ColorBlack).
+		Foreground(tcell.ColorGray)
 }
 func emitStr(s tcell.Screen, x, y int, style tcell.Style, str string) {
 	for _, c := range str {

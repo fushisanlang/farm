@@ -38,7 +38,7 @@ func FarmSelectScreen(s tcell.Screen, page int) int {
 			gconv.String(fieldList[i+(page-1)*basePageCount].PlantCount)+"/10")
 	}
 	farmSelectScreen(s)
-	infoMessageScreenColumn2(s, []model.ScreenInfoMessage{vPress, qPress})
+	infoMessageScreenColumn2(s, []model.ScreenInfoMessage{sPress, vPress, qPress})
 
 	s.Show()
 	return page
@@ -47,5 +47,6 @@ func FarmSelectScreen(s tcell.Screen, page int) int {
 func farmSelectScreen(s tcell.Screen) {
 	var a model.ScreenInfoMessage
 	a.MessageStr = "    数字 : 选择种植园"
+
 	infoMessageScreen(s, []model.ScreenInfoMessage{a, leftPress, rightPress})
 }

@@ -68,3 +68,11 @@ func OpenField(id int, fieldId int) (bool, int) {
 		return false, IsMoneyEnough
 	}
 }
+
+func FiledSummary() gdb.Result {
+	sql := `select keyid,isopen,duringtime,timeneed from field;`
+	FiledSummary, err := g.DB().GetAll(sql)
+	tools.CheckErr(err)
+
+	return FiledSummary
+}

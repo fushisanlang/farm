@@ -20,6 +20,9 @@ var RatioBuy, RatioSale float32
 var BuySeedList, BuyPlantList, BuyGroceriesList []model.BuyList
 var UserMoney int
 
+//自动刷新参数
+var RefreserCode int
+
 func init() {
 	RatioBuy, RatioSale = 1, 1
 	Version = "0.0.1"
