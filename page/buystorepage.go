@@ -8,11 +8,13 @@ package page
 
 import (
 	"farm/screen"
+	"farm/service"
 	"github.com/gdamore/tcell/v2"
 	"os"
 )
 
 func buyStorePage(s tcell.Screen, RatioBuy int) {
+	service.RefreshUserInfo()
 	screen.BuyStoreScreen(s)
 	for {
 		switch ev := s.PollEvent().(type) {

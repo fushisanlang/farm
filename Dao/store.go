@@ -84,7 +84,7 @@ func SaleGoods(GoodsList model.GoodsList, goodsCount int, ratioSale int) {
 //每小时更新
 //种子
 func GetBuySeedList() gdb.Result {
-	sql := ` SELECT id id,plantname name,price/10 price,1 groupid FROM plant where level <= (select level from userinfo ) ORDER BY RANDOM() limit 8;
+	sql := ` SELECT id id,plantname name,price/10*yield price,1 groupid FROM plant where level <= (select level from userinfo ) ORDER BY RANDOM() limit 8;
 `
 	BuyGoodsList, err := g.DB().GetAll(sql)
 	tools.CheckErr(err)

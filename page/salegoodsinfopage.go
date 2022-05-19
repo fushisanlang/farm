@@ -16,7 +16,7 @@ import (
 )
 
 func saleGoodsInfoPage(s tcell.Screen, KeyId int, ratioSale int, goodsInfo model.GoodsList) {
-
+	service.RefreshUserInfo()
 	screen.SaleGoodsInfoScreen(s, KeyId, ratioSale, goodsInfo)
 	for {
 		switch ev := s.PollEvent().(type) {

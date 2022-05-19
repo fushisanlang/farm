@@ -1,7 +1,7 @@
 /*
-@Time : 2022/4/11 10:03 上午
+@Time : 2022/5/19 13:42
 @Author : fushisanlang
-@File : GetDbVersion
+@File : userinfo
 @Software: GoLand
 */
 package service
@@ -9,6 +9,7 @@ package service
 import (
 	"farm/Dao"
 	"github.com/gogf/gf/util/gconv"
+	"time"
 )
 
 func VerifyUserInfoWithErase() bool {
@@ -56,4 +57,21 @@ func VerifyUserInfo() bool {
 		return false
 	}
 
+}
+
+func VerifyOfflineTime() int {
+	nowTime := gconv.Int(time.Now().Unix())
+	lastTime := gconv.Int(Dao.GetUserInfo("lasttime"))
+	return nowTime - lastTime
+}
+func RefreshUserInfo() {
+	refreshUserMoney()
+}
+func refreshUserMoney() {
+	UserMoney = gconv.Int(Dao.GetUserInfo("money"))
+
+}
+func RefreshUserLastTime() {
+	now := gconv.Int(time.Now().Unix())
+	Dao.RefreshUserLastTime(now)
 }

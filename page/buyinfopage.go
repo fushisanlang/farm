@@ -16,7 +16,7 @@ import (
 )
 
 func buyInfoPage(s tcell.Screen, ratioBuy int, buyInfo model.BuyList) {
-
+	service.RefreshUserInfo()
 	screen.BuyInfoScreen(s, ratioBuy, buyInfo)
 	for {
 		switch ev := s.PollEvent().(type) {

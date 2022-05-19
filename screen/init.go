@@ -89,17 +89,6 @@ func printAllBox2(s tcell.Screen) {
 
 }
 
-func printAllBox3(s tcell.Screen) {
-	printBox3(s, 3, 2)
-	printBox3(s, 3, 8)
-	printBox3(s, 3, 14)
-	printBox3(s, 3, 20)
-	printBox3(s, 40, 2)
-	printBox3(s, 40, 8)
-	printBox3(s, 40, 14)
-	printBox3(s, 40, 20)
-
-}
 func printBox3(s tcell.Screen, x int, y int) {
 
 	style := tcell.StyleDefault.

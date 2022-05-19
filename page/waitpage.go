@@ -8,12 +8,13 @@ package page
 
 import (
 	"farm/screen"
+	"farm/service"
 	"github.com/gdamore/tcell/v2"
 	"os"
 )
 
 func WaitPage(s tcell.Screen, waitString string) {
-
+	service.RefreshUserInfo()
 	screen.WaitScreen(s, waitString)
 	for {
 		switch ev := s.PollEvent().(type) {

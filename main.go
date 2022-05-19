@@ -49,6 +49,8 @@ func main() {
 	}
 	g.Log().Println("校验窗口大小")
 	page.VerifySizePage(s)
+	g.Log().Println("校验离线时间")
+	page.VerifyOfflineTimePage(s)
 	g.Log().Println("访问起始页")
 	page.StartPage(s)
 }

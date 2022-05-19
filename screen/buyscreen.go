@@ -20,16 +20,30 @@ func BuyScreen(s tcell.Screen, buyList []model.BuyList, RatioBuy int) {
 	style := tcell.StyleDefault.
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
-	printAllBox3(s)
+	lenList := len(buyList)
+	if lenList == 0 {
+		printBox3(s, 3, 2)
+		emitStr(s, 4, 4, style, "      暂无适合您的货物")
+	} else {
+		//printBox3(s, 3, 2)
+		//printBox3(s, 3, 8)
+		//printBox3(s, 3, 14)
+		//printBox3(s, 3, 20)
+		//printBox3(s, 40, 2)
+		//printBox3(s, 40, 8)
+		//printBox3(s, 40, 14)
+		//printBox3(s, 40, 20)
+		emitStr(s, 4, 32, style, "持有晶石"+gconv.String(service.UserMoney)+"块")
+		for i := 0; i < lenList; i++ {
+			printBox3(s, 3+37*(i%2), 2+6*(i/2))
+			emitStr(s, 4+37*(i%2), 3+6*(i/2), style, "按键 ："+gconv.String(i+1))
+			emitStr(s, 4+37*(i%2), 4+6*(i/2), style, "名称 ："+buyList[i].Name)
+			emitStr(s, 4+37*(i%2), 5+6*(i/2), style, "单价 ："+gconv.String(buyList[i].Price)+"块晶石")
+		}
+		buyScreen(s)
 
-	emitStr(s, 4, 32, style, "持有晶石"+gconv.String(service.UserMoney)+"块")
-	for i := 0; i < len(buyList); i++ {
-		emitStr(s, 4+37*(i%2), 3+6*(i/2), style, "按键 ："+gconv.String(i+1))
-		emitStr(s, 4+37*(i%2), 4+6*(i/2), style, "名称 ："+buyList[i].Name)
-		emitStr(s, 4+37*(i%2), 5+6*(i/2), style, "单价 ："+gconv.String(buyList[i].Price)+"块晶石")
 	}
 	infoMessageScreenColumn2(s, []model.ScreenInfoMessage{bPress, nPress, qPress})
-	buyScreen(s)
 	s.Show()
 }
 func buyScreen(s tcell.Screen) {

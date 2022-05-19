@@ -14,6 +14,7 @@ import (
 )
 
 func FeildSummaryPage(s tcell.Screen) {
+	service.RefreshUserInfo()
 	service.RefreserCode = 0
 	go screen.FeildSummaryScreen(s)
 

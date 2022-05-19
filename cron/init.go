@@ -13,7 +13,9 @@ import (
 
 func init() {
 	autoRefreshStoreBuyList()
-	gcron.Add("* * * * * *", duringTimeAutoAdd)
+	gcron.Add("0 * * * * *", duringTimeAutoAdd)
+	gcron.Add("* * * * * *", autoRefreshLastTime)
+
 	gcron.Add("0 0 * * * *", autoRefreshStoreBuyList)
 
 }
@@ -26,4 +28,7 @@ func autoRefreshStoreBuyList() {
 	service.GetBuyGroceriesList()
 	service.GetBuySeedList()
 	service.GetBuyPlantList()
+}
+func autoRefreshLastTime() {
+	service.RefreshUserLastTime()
 }

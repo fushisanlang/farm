@@ -36,7 +36,7 @@ func FarmScreen(s tcell.Screen, page int, id int) (int, int) {
 			if fieldList[i].PlantName != "" {
 				emitStr(s, 4, 4+(8*i), style, "灵植名称 : "+fieldList[i].PlantName)
 				emitStr(s, 4, 5+(8*i), style, "目前状态 : "+gconv.String(fieldList[i].DuringTime))
-				emitStr(s, 4, 6+(8*i), style, "成熟时间 : "+gconv.String(fieldList[i].NeedTime-fieldList[i].DuringTime))
+				emitStr(s, 4, 6+(8*i), style, "成熟时间 : "+gconv.String(fieldList[i].NeedTime))
 			} else {
 				emitStr(s, 4, 4+(8*i), style, "尚未种植")
 

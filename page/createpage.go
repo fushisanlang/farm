@@ -16,6 +16,7 @@ import (
 )
 
 func createPage(s tcell.Screen, id int) {
+	service.RefreshUserInfo()
 	s.Fini()
 	tools.CallClear()
 	switch id {

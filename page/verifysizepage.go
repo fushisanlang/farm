@@ -14,6 +14,7 @@ import (
 )
 
 func VerifySizePage(s tcell.Screen) {
+	service.RefreshUserInfo()
 	for service.VerifySize(s) == false {
 		screen.VerifySizeScreen(s, service.WeightMin, service.HeightMin)
 		switch ev := s.PollEvent().(type) {

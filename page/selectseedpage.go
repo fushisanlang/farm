@@ -14,6 +14,7 @@ import (
 )
 
 func selectSeedPage(s tcell.Screen, screenId int, fieldId int, page int) {
+	service.RefreshUserInfo()
 	seedList := service.GetSeedList()
 	page, pageCount, basePageCount := screen.SelectSeedScreen(s, page, seedList)
 	for {

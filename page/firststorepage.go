@@ -14,7 +14,7 @@ import (
 )
 
 func firstStorePage(s tcell.Screen) {
-
+	service.RefreshUserInfo()
 	RatioBuy, RatioSale := screen.FirstStoreScreen(s)
 	for {
 		switch ev := s.PollEvent().(type) {

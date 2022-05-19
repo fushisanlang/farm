@@ -20,3 +20,12 @@ WHERE
 	_, err := g.DB().Exec(sql)
 	tools.CheckErr(err)
 }
+func DuringTimeAdd(duringTime int) {
+	sql := `UPDATE field 
+SET duringtime = min(duringtime + ?,timeneed)
+WHERE
+	keyid IN ( SELECT keyid FROM field f, plant p WHERE f.isopen = 1 AND f.plantid = p.id AND f.duringtime < p.timeneed )`
+
+	_, err := g.DB().Exec(sql, duringTime)
+	tools.CheckErr(err)
+}

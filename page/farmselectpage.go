@@ -8,11 +8,13 @@ package page
 
 import (
 	"farm/screen"
+	"farm/service"
 	"github.com/gdamore/tcell/v2"
 	"os"
 )
 
 func farmSelectPage(s tcell.Screen, page int) {
+	service.RefreshUserInfo()
 	page = screen.FarmSelectScreen(s, page)
 	for {
 		switch ev := s.PollEvent().(type) {

@@ -11,3 +11,7 @@ import "farm/Dao"
 func DuringTimeAutoAdd() {
 	Dao.DuringTimeAutoAdd()
 }
+
+func DuringTimeAdd(duringTime int) {
+	Dao.DuringTimeAdd(duringTime)
+}

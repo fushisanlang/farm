@@ -30,7 +30,8 @@ func GetUserInfo(infoKey string) string {
 		sql = `select money infoValue from userinfo where  id = 1;`
 	case "userage":
 		sql = `select userage infoValue from userinfo where  id = 1;`
-
+	case "lasttime":
+		sql = `select lasttime infoValue from userinfo where  id = 1;`
 	}
 
 	InfoValue, _ := g.DB().GetOne(sql)
@@ -62,4 +63,9 @@ func UpdateUserInfo(infoKey string, infoValue string) {
 	_, err := g.DB().Exec(sql, infoValue)
 	tools.CheckErr(err)
 
+}
+func RefreshUserLastTime(nowTime int) {
+	sql := `update userinfo set lasttime = ?`
+	_, err := g.DB().Exec(sql, nowTime)
+	tools.CheckErr(err)
 }

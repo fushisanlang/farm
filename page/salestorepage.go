@@ -15,6 +15,7 @@ import (
 
 //显示背包可卖物品列表，每页5个，左右键翻页
 func saleStorePage(s tcell.Screen, page int, ratioSale int) {
+	service.RefreshUserInfo()
 	goodsList := service.GetGoodsList()
 	page, pageCount, basePageCount := screen.SelectGoodsScreen(s, page, goodsList, ratioSale)
 	//page, _, _ = screen.SelectGoodsScreen(s, page, goodsList,ratioSale)

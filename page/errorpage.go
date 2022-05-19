@@ -8,12 +8,13 @@ package page
 
 import (
 	"farm/screen"
+	"farm/service"
 	"github.com/gdamore/tcell/v2"
 	"os"
 )
 
 func errorPage(s tcell.Screen, errorString string) {
-
+	service.RefreshUserInfo()
 	screen.ErrorScreen(s, errorString)
 	for {
 		switch ev := s.PollEvent().(type) {

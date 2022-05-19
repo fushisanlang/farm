@@ -16,6 +16,7 @@ import (
 
 //显示背包可卖物品列表，每页5个，左右键翻页
 func buyPage(s tcell.Screen, groupId int, RatioBuy int) {
+	service.RefreshUserInfo()
 	var buyList []model.BuyList
 	if groupId == 1 {
 		buyList = service.BuySeedList
