@@ -15,12 +15,12 @@ func InitData() {
 	g.Log().Println("InitData")
 	eraseUserTable()
 	eraseFieldTable()
-	//eraseBagTable()
-	//giveSeed()
+	eraseBagTable()
+	giveSeed()
 	openField()
 }
 func eraseUserTable() {
-	sql := `UPDATE "main"."userinfo" SET "username" = NULL,"userage" = NULL, "farmname" = NULL, "farmclassid" = NULL, "petname" = NULL, "money" = 1000, "ex" = 0, "level" = 0, "nextfieldneed" = 500 WHERE "id" = 1;`
+	sql := `UPDATE "main"."userinfo" SET "username" = NULL,"userage" = NULL, "farmname" = NULL, "farmclassid" = NULL, "petname" = NULL, "money" = 1000, "ex" = 0, "level" = 1, "nextfieldneed" = 500 WHERE "id" = 1;`
 	_, err := g.DB().Exec(sql)
 	tools.CheckErr(err)
 }

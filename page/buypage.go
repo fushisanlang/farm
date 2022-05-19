@@ -26,6 +26,8 @@ func buyPage(s tcell.Screen, groupId int, RatioBuy int) {
 		buyList = service.BuyGroceriesList
 
 	}
+	lenList := len(buyList)
+
 	screen.BuyScreen(s, buyList, RatioBuy)
 	//page, _, _ = screen.SelectGoodsScreen(s, page, goodsList,ratioSale)
 
@@ -50,30 +52,54 @@ func buyPage(s tcell.Screen, groupId int, RatioBuy int) {
 				case 'q':
 					s.Fini()
 					os.Exit(0)
+
 				case '1':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[0])
+					if lenList >= 1 {
+						buyInfoPage(s, RatioBuy, buyList[0])
+					}
 				case '2':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[1])
+					if lenList >= 2 {
+
+						buyInfoPage(s, RatioBuy, buyList[1])
+					}
 				case '3':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[2])
+					if lenList >= 3 {
+
+						buyInfoPage(s, RatioBuy, buyList[2])
+					}
 				case '4':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[3])
+					if lenList >= 4 {
+
+						buyInfoPage(s, RatioBuy, buyList[3])
+					}
 				case '5':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[4])
+					if lenList >= 5 {
+
+						buyInfoPage(s, RatioBuy, buyList[4])
+					}
 				case '6':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[5])
+					if lenList >= 6 {
+
+						buyInfoPage(s, RatioBuy, buyList[5])
+					}
 				case '7':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[6])
+					if lenList >= 7 {
+
+						buyInfoPage(s, RatioBuy, buyList[6])
+					}
 				case '8':
 					s.Sync()
-					buyInfoPage(s, RatioBuy, buyList[7])
+					if lenList >= 8 {
+
+						buyInfoPage(s, RatioBuy, buyList[7])
+					}
 
 				}
 

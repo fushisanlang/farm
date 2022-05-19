@@ -19,11 +19,19 @@ func BuyStoreScreen(s tcell.Screen) {
 	style := tcell.StyleDefault.
 		Background(tcell.ColorBlack).
 		Foreground(tcell.ColorWhite)
-	emitStr(s, 3, 5, style, "1 zhongzi : ")
-	emitStr(s, 3, 6, style, "2 zuowu : ")
-	emitStr(s, 3, 7, style, "3 zawu ， ")
+	printBox4(s, 3, 2)
+	printBox4(s, 43, 2)
 
-	firstStoreScreen(s)
+	printBox4(s, 83, 2)
+
+	emitStr(s, 4, 3, style, "按键信息：1 ")
+	emitStr(s, 4, 4, style, "商品种类：种子 ")
+	emitStr(s, 44, 3, style, "按键信息：2 ")
+	emitStr(s, 44, 4, style, "商品种类：作物 ")
+	emitStr(s, 84, 3, style, "按键信息：3 ")
+	emitStr(s, 84, 4, style, "商品种类：杂物 ")
+
+	buyStoreScreen(s)
 	infoMessageScreenColumn2(s, []model.ScreenInfoMessage{nPress, qPress})
 	s.Show()
 

@@ -45,7 +45,7 @@ func feildSummaryScreen(s tcell.Screen) {
 				a := FiledSummaryList[id].DTime * 30 / FiledSummaryList[id].NTime
 				b := 30 - a
 				strRepeat := strings.Repeat("|", a) + strings.Repeat(" ", b)
-				emitStr(s, 2, i, styleBlue, "["+strRepeat+"]")
+				emitStr(s, 2, i, styleGreen, "["+strRepeat+"]")
 			}
 
 			//2

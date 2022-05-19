@@ -38,7 +38,7 @@ func createPage(s tcell.Screen, id int) {
 	s, err := tcell.NewScreen()
 	tools.CheckErr(err)
 
-	s.Init()
+	s = service.CreateNewScreen()
 	g.Log().Println("返回创建页面")
 	CreatePage(s)
 }

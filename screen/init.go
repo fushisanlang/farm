@@ -146,7 +146,18 @@ func printBox(s tcell.Screen, x int, y int) {
 	emitStr(s, x+25, y+4, style, "|")
 
 }
+func printBox4(s tcell.Screen, x int, y int) {
+	style := tcell.StyleDefault.
+		Background(tcell.ColorBlack).
+		Foreground(tcell.ColorWhite)
+	emitStr(s, x, y, style, "+------------------------+")
+	emitStr(s, x, y+3, style, "+------------------------+")
+	emitStr(s, x, y+1, style, "|")
+	emitStr(s, x, y+2, style, "|")
+	emitStr(s, x+25, y+1, style, "|")
+	emitStr(s, x+25, y+2, style, "|")
 
+}
 func infoMessageScreen(s tcell.Screen, messageList []model.ScreenInfoMessage) {
 	_, h := s.Size()
 	lenMessageList := len(messageList)

@@ -84,7 +84,7 @@ func SaleGoods(GoodsList model.GoodsList, goodsCount int, ratioSale int) {
 //每小时更新
 //种子
 func GetBuySeedList() gdb.Result {
-	sql := ` SELECT id id,plantname name,price/10 price,1 groupid FROM plant where level < (select level from userinfo ) ORDER BY RANDOM() limit 8;
+	sql := ` SELECT id id,plantname name,price/10 price,1 groupid FROM plant where level <= (select level from userinfo ) ORDER BY RANDOM() limit 8;
 `
 	BuyGoodsList, err := g.DB().GetAll(sql)
 	tools.CheckErr(err)
@@ -93,7 +93,7 @@ func GetBuySeedList() gdb.Result {
 
 //植物
 func GetBuyPlantList() gdb.Result {
-	sql := `  SELECT id id,plantname name,price price,2 groupid FROM plant where level < (select level from userinfo ) ORDER BY RANDOM() limit 8;
+	sql := `  SELECT id id,plantname name,price price,2 groupid FROM plant where level <= (select level from userinfo ) ORDER BY RANDOM() limit 8;
 `
 	BuyPlantList, err := g.DB().GetAll(sql)
 	tools.CheckErr(err)
@@ -102,7 +102,7 @@ func GetBuyPlantList() gdb.Result {
 
 //杂物。炼丹炉，药引子
 func GetBuyGroceriesList() gdb.Result {
-	sql := ` SELECT id id,name name,price price,4 groupid FROM groceries where level < (select level from userinfo ) ORDER BY RANDOM() limit 8;`
+	sql := ` SELECT id id,name name,price price,4 groupid FROM groceries where level <= (select level from userinfo ) ORDER BY RANDOM() limit 8;`
 	BuyOtherList, err := g.DB().GetAll(sql)
 	tools.CheckErr(err)
 	return BuyOtherList
